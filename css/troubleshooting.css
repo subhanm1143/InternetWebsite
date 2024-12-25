@@ -1,0 +1,77 @@
+main {
+    padding: 0 2rem;
+}
+
+#tools, #speed-guides, #other-resources {
+    margin-bottom: 3rem;
+}
+
+#tools h2, #speed-guides h2, #other-resources h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid #235dfb;
+    padding-bottom: 0.5rem;
+}
+
+.tool, .guide {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.tool-content, .guide h3, .guide p {
+    flex: 1;
+}
+
+.tool-btn, .guide-btn {
+    background-color: #ff0043;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.tool-btn:hover, .guide-btn:hover {
+    background-color: #cc0038;
+}
+
+/* List resources */
+#other-resources ul {
+    list-style: none;
+    padding: 0;
+}
+
+#other-resources li {
+    margin: 0.5rem 0;
+}
+
+#other-resources li a {
+    color: #00274d;
+    font-weight: bold;
+    padding: 0.2rem;
+    transition: background-color 0.3s;
+}
+
+#other-resources li a:hover {
+    background-color: #eef5ff;
+    border-radius: 4px;
+}
+
+/* Media queries */
+@media (max-width: 768px) {
+    .tool, .guide {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .tool-btn, .guide-btn {
+        margin-top: 0.5rem;
+        align-self: flex-end;
+    }
+}

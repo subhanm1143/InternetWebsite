@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speed Calculator</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/speedCalculator.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Header Navigation -->
+    <header class="main-header">
+        <div class="logo">
+            <a href="index.html"><img src="imgs/Logo.png" alt="Logo"></a>
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="compareProviders.html">Compare Providers</a></li>
+                <li><a href="reviewProviders.html">Review Providers</a></li>
+                <li><a href="resources.html">Resources</a></li>
+            </ul>
+        </nav>
+        <div class="search-bar-container">
+            <input type="text" id="search-input" placeholder="Search pages..." class="search-input">
+            <ul id="search-results" class="search-results"></ul>
+        </div>
+    </header>
+
+    <main>
+        <section class="internet-speed-info">
+            <h1>Understanding Internet Speeds</h1>
+            <p>Internet speed is the measure of how fast data is transferred from the web to your devices. It is typically measured in megabits per second (Mbps). Higher speeds mean faster downloads, smoother streaming, and better online experiences.</p>
+            <p>Factors affecting your internet speed include the type of connection (fiber, cable, DSL, satellite), the number of users and devices, and the activities being performed online.</p>
+            <p>Our tools can help you determine the best speed for your needs based on your household size, usage patterns, and more. Explore below to get started.</p>
+        </section>
+
+        <section class="speed-calculation">
+            <h1>Find Your Ideal Internet Speed</h1>
+            <div class="question-container">
+                <!-- Question 1 -->
+                <div class="question" data-step="1">
+                    <h2>How many people in your household use the internet/WiFi daily?</h2>
+                    <div class="options">
+                        <button onclick="selectAnswer(1, 10)">1-2</button>
+                        <button onclick="selectAnswer(1, 20)">3-4</button>
+                        <button onclick="selectAnswer(1, 30)">5+</button>
+                    </div>
+                </div>
+                <!-- Question 2 -->
+                <div class="question hidden" data-step="2">
+                    <h2>How many devices are connected to the internet in your home?</h2>
+                    <div class="options">
+                        <button onclick="selectAnswer(2, 10)">1-3</button>
+                        <button onclick="selectAnswer(2, 20)">4-6</button>
+                        <button onclick="selectAnswer(2, 30)">7-9</button>
+                        <button onclick="selectAnswer(2, 40)">10+</button>
+                    </div>
+                </div>
+                <!-- Question 3 -->
+                <div class="question hidden" data-step="3">
+                    <h2>What video quality do you use for streaming TV and movies?</h2>
+                    <div class="options">
+                        <button onclick="selectAnswer(3, 5)">I don't stream</button>
+                        <button onclick="selectAnswer(3, 10)">HD</button>
+                        <button onclick="selectAnswer(3, 20)">4K</button>
+                    </div>
+                </div>
+                <!-- Question 4 -->
+                <div class="question hidden" data-step="4">
+                    <h2>How intensely does your household participate in online gaming?</h2>
+                    <div class="options">
+                        <button onclick="selectAnswer(4, 5)">No online gaming</button>
+                        <button onclick="selectAnswer(4, 15)">Casual and recreational</button>
+                        <button onclick="selectAnswer(4, 25)">Seriously competitive</button>
+                        <button onclick="selectAnswer(4, 40)">Professional level</button>
+                    </div>
+                </div>
+                <!-- Question 5 -->
+                <div class="question hidden" data-step="5">
+                    <h2>Does your household download large files from the cloud or via the internet?</h2>
+                    <div class="options">
+                        <button onclick="selectAnswer(5, 0)">No</button>
+                        <button onclick="selectAnswer(5, 15)">Yes, occasionally</button>
+                        <button onclick="selectAnswer(5, 30)">Yes, frequently</button>
+                    </div>
+                </div>
+                <!-- Question 6 -->
+                <div class="question hidden" data-step="6">
+                    <h2>How many people in your household work from home?</h2>
+                    <div class="options">
+                        <button onclick="selectAnswer(6, 0)">None</button>
+                        <button onclick="selectAnswer(6, 20)">1</button>
+                        <button onclick="selectAnswer(6, 30)">2</button>
+                        <button onclick="selectAnswer(6, 50)">3+</button>
+                    </div>
+                </div>
+                <!-- Final Result -->
+                <div class="result hidden">
+                    <h2>Your Recommended Speed</h2>
+                    <div id="recommended-speed" class="speed-display">0 Mbps</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+          <div class="footer-column">
+            <h3>Providers</h3>
+            <ul>
+              <li><a href="compareProviders.html">Compare Providers</a></li>
+              <li><a href="reviewProviders.html">Review Providers</a></li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <h3>Internet Tools</h3>
+            <ul>
+              <li><a href="speed.html">Internet Speed Test</a></li>
+              <li><a href="speedCalculator.html">How Much Speed Do You Need?</a></li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <h3>Connect with Us</h3>
+            <ul>
+              <li><a href="about.html">About</a></li>
+              <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+            <div class="social-icons">
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="chat-box">
+          <i class="fas fa-comments"></i>
+        </div>
+      </footer>
+
+    <script>
+        let totalSpeed = 0;
+        let currentStep = 1;
+
+        function selectAnswer(step, value) {
+            totalSpeed += value;
+
+            // Hide current question
+            document.querySelector(`.question[data-step="${step}"]`).classList.add('hidden');
+
+            // Show the next question or result
+            const nextQuestion = document.querySelector(`.question[data-step="${step + 1}"]`);
+            if (nextQuestion) {
+                nextQuestion.classList.remove('hidden');
+            } else {
+                document.querySelector('.result').classList.remove('hidden');
+                document.getElementById('recommended-speed').textContent = `${totalSpeed} Mbps`;
+            }
+        }
+    </script>
+</body>
+</html>

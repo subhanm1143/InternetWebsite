@@ -1,0 +1,48 @@
+/* Main Section */
+#speed-test {
+    text-align: center;
+    padding: 50px 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+#speed-test h1 {
+    font-size: 2rem;
+    color: #235dfb;
+    margin-bottom: 10px;
+}
+
+#speed-test p {
+    font-size: 1rem;
+    margin-bottom: 20px;
+    color: #555;
+}
+
+.start-test-btn {
+    background-color: #235dfb;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.start-test-btn:hover {
+    background-color: #1d4ccb;
+}
+
+/* Results Section */
+.results {
+    margin-top: 20px;
+    font-size: 1.2rem;
+    color: #333;
+}
+
+.results p {
+    margin: 10px 0;
+}

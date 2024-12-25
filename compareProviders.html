@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compare Providers</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/compareProviders.css">
+</head>
+<body>
+    <!-- Header Navigation -->
+    <header class="main-header">
+        <div class="logo">
+            <a href="index.html"><img src="imgs/Logo.png" alt="Logo"></a>
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="compareProviders.html">Compare Providers</a></li>
+                <li><a href="reviewProviders.html">Review Providers</a></li>
+                <li><a href="resources.html">Resources</a></li>
+            </ul>
+        </nav>
+        <div class="search-bar-container">
+            <input type="text" id="search-input" placeholder="Search pages..." class="search-input">
+            <ul id="search-results" class="search-results"></ul>
+        </div>
+    </header>
+
+    <main>
+        <section class="search-section">
+            <div class="container">
+                <h1>Search Internet Providers by Zip Code</h1>
+                <p>
+                    We’ve built a comprehensive database of all the internet service providers across the United States.
+                </p>
+                <p>Enter your zip code to find the best internet providers near you.</p>
+                <div class="search-box">
+                    <input type="text" id="zip-code-input" placeholder="Zip code" class="zip-input">
+                    <button id="search-button" class="search-button">Search Providers</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="results-section">
+            <div class="container">
+                <h2>Broadband Data Results</h2>
+                <div id="zip-display">
+                    <!-- Display ZIP code here -->
+                </div>
+                <div class="result-container">
+                    <table class="broadband-data-table">
+                        <tbody id="broadband-info">
+                            <!-- Dynamic content will go here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-container">
+          <div class="footer-column">
+            <h3>Providers</h3>
+            <ul>
+              <li><a href="compareProviders.html">Compare Providers</a></li>
+              <li><a href="reviewProviders.html">Review Providers</a></li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <h3>Internet Tools</h3>
+            <ul>
+              <li><a href="speed.html">Internet Speed Test</a></li>
+              <li><a href="speedCalculator.html">How Much Speed Do You Need?</a></li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <h3>Connect with Us</h3>
+            <ul>
+              <li><a href="about.html">About</a></li>
+              <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+            <div class="social-icons">
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="chat-box">
+          <i class="fas fa-comments"></i>
+        </div>
+      </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+    console.log("DOM fully loaded and parsed");
+
+    const searchButton = document.getElementById('search-button');
+    const zipCodeInput = document.getElementById('zip-code-input');
+    const broadbandInfo = document.getElementById('broadband-info');
+
+    let broadbandData = [];
+
+    // Fetch and parse broadband data
+    fetch('broadband_data.csv')
+        .then(response => response.text())
+        .then(csvText => {
+            const rows = csvText.split('\n').filter(row => row.trim() !== '').slice(1); // Skip empty lines and header
+            broadbandData = rows.map(row => {
+                const fields = row.split(',');
+
+                if (fields.length < 23) return null;
+
+                const [
+                    zip, population, county, state, wiredCount, ,
+                    , , , , , , avgMbps, ,
+                    , lowestPrice
+                ] = fields;
+
+                return {
+                    zip: zip ? zip.trim() : '',
+                    population: population ? population.trim() : '',
+                    county: county ? county.trim() : '',
+                    state: state ? state.trim() : '',
+                    wiredCount: wiredCount ? wiredCount.trim() : '',
+                    avgMbps: avgMbps ? avgMbps.trim() : '',
+                    lowestPrice: lowestPrice ? lowestPrice.trim() : ''
+                };
+            }).filter(entry => entry !== null);
+
+            // Check for query parameter and display results
+            const zipCode = getQueryParam("zip");
+            if (zipCode) {
+                zipCodeInput.value = zipCode; // Set the input field with the ZIP code
+                displayBroadbandInfo(zipCode, broadbandData);
+            }
+        })
+        .catch(error => console.error('Error loading CSV:', error));
+
+    // Function to extract query parameter
+    function getQueryParam(param) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(param);
+    }
+
+    // Function to display broadband info
+    function displayBroadbandInfo(zipCode, data) {
+        const zipData = data.filter(entry => entry.zip === zipCode);
+
+        if (zipData.length === 0) {
+            broadbandInfo.innerHTML = `<p>No broadband data available for ZIP code: ${zipCode}</p>`;
+            return;
+        }
+
+        const tableHeader = `
+            <tr>
+                <th>ZIP Code</th>
+                <th>Population</th>
+                <th>County</th>
+                <th>State</th>
+                <th>Wired Count</th>
+                <th>Average Mbps</th>
+                <th>Lowest Priced Plan</th>
+            </tr>
+        `;
+
+        const tableRows = zipData.map(entry => `
+            <tr>
+                <td>${entry.zip}</td>
+                <td>${entry.population}</td>
+                <td>${entry.county}</td>
+                <td>${entry.state}</td>
+                <td>${entry.wiredCount}</td>
+                <td>${entry.avgMbps}</td>
+                <td>$${entry.lowestPrice}</td>
+            </tr>
+        `).join('');
+
+        broadbandInfo.innerHTML = tableHeader + tableRows;
+    }
+
+    // Event listener for search button
+    searchButton.addEventListener('click', () => {
+        const zipCode = zipCodeInput.value.trim();
+        if (zipCode) {
+            // Update URL with the new ZIP code
+            window.history.pushState(null, '', `?zip=${zipCode}`);
+            // Refresh the broadband data with the new ZIP code
+            displayBroadbandInfo(zipCode, broadbandData);
+        }
+    });
+});
+
+    </script>
+    
+    
+</body>
+</html>

@@ -1,0 +1,101 @@
+/* Readmore Specific Styles */
+
+/* Header Section */
+header {
+    text-align: center;
+    background-color: #f4f8fc;
+    padding: 20px;
+    border-bottom: 2px solid #e0e0e0;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    color: #003366;
+    margin-bottom: 10px;
+}
+
+header p {
+    font-size: 1rem;
+    color: #555;
+}
+
+/* Main Section Styling */
+main {
+    padding: 20px;
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+main section {
+    margin-bottom: 30px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    border-left: 5px solid #003366;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+main section h2 {
+    font-size: 1.8rem;
+    color: #003366;
+    margin-bottom: 15px;
+}
+
+main section h3 {
+    font-size: 1.4rem;
+    color: #00509e;
+    margin-bottom: 10px;
+}
+
+main section p {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.8;
+    margin-bottom: 15px;
+}
+
+/* Takeaways Section Highlight */
+#takeaways {
+    background-color: #003366;
+    color: #ffffff;
+}
+
+#takeaways h2 {
+    color: #ffffff;
+}
+
+#takeaways p {
+    font-weight: bold;
+    color: #ffffff;
+}
+
+/* Footer Styling */
+footer {
+    text-align: center;
+    background-color: #f4f8fc;
+    padding: 10px;
+    border-top: 2px solid #e0e0e0;
+}
+
+footer p {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    main {
+        padding: 10px;
+    }
+
+    main section {
+        padding: 15px;
+    }
+
+    header h1 {
+        font-size: 2rem;
+    }
+}

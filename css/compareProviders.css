@@ -1,0 +1,149 @@
+/* General styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+  }
+  
+  /* Search Section */
+  .search-section {
+    background-color: #0d1b2a; /* Navy background */
+    color: #ffffff; /* White text */
+    text-align: center;
+    padding: 60px 20px;
+  }
+  
+  .search-section h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+  }
+  
+  .search-section p {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+  }
+  
+  .search-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+  
+.zip-input {
+    font-size: 16px;
+    border: 1px solid #ccc;
+    outline: none;
+    width: 250px; /* Adjust width as needed */
+    height: 50px;
+}
+  
+
+.search-button {
+    height: 60px;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #e74c3c;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.search-button:hover {
+    background-color: #c0392b;
+}
+  
+  /* Info Section */
+  .info-section {
+    padding: 40px 20px;
+    background-color: #ffffff;
+    color: #0d1b2a;
+  }
+  
+  .info-section h2 {
+    font-size: 2em;
+    color: #0d1b2a;
+  }
+  
+  .info-section p {
+    font-size: 1.1em;
+    margin-bottom: 15px;
+  }
+  
+  .info-section a {
+    color: #1d3557; /* Dark blue */
+    text-decoration: underline;
+  }
+  
+  .info-section a:hover {
+    color: #e63946;
+  }
+  
+  /* Table Section */
+  .zip-search-section {
+    padding: 40px 20px;
+    background-color: #f9f9f9;
+    text-align: center;
+  }
+  
+  .container {
+    max-width: 800px;
+    margin: auto;
+  }
+  
+  .zip-input {
+    padding: 10px;
+    width: 60%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .btn-search {
+    padding: 10px 20px;
+    background-color: #003bb3;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .btn-search:hover {
+    background-color: #002b8a;
+  }
+  
+  .result-container {
+    margin-top: 20px;
+  }
+  
+  .broadband-data-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #ffffff;
+    margin-top: 20px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .broadband-data-table th,
+  .broadband-data-table td {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ddd;
+  }
+  
+  .broadband-data-table th {
+    background-color: #003bb3;
+    color: #fff;
+  }
+  
+  .bubble {
+    display: inline-block;
+    padding: 5px 10px;
+    background: #f44336;
+    color: #fff;
+    border-radius: 15px;
+    font-size: 12px;
+    font-weight: bold;
+  }
+  
