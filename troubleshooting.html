@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/troubleshooting.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+
 </head>
 <body>
     <!-- Header Navigation -->
@@ -27,14 +30,15 @@
         </div>
     </header>
     <main>
-        <header>
+        <header data-aos="fade-in" data-aos-duration="2000">
             <h1>Internet Troubleshooting Hub</h1>
             <p>Welcome to the HighSpeedInternet.com troubleshooting hub. We’re a team of internet experts who understand how frustrating it can be when your internet doesn’t work properly. Our tools and guides are designed to help you solve your internet issues as quickly and painlessly as possible.</p>
         </header>
 
         <section id="tools">
             <h2>Tools</h2>
-            <div class="tool">
+            <div class="tool" data-aos="fade-right"
+            data-aos-duration="2000">
                 <div class="tool-content">
                     <h3>Diagnose slow speeds</h3>
                     <p>Test your internet connection to see if you’re getting the speeds you’re paying for.</p>
@@ -42,7 +46,8 @@
                 <a class="tool-btn" href="speed.html">Take a Speed Test</a>
             </div>
 
-            <div class="tool">
+            <div class="tool" data-aos="fade-left"
+            data-aos-duration="2000">
                 <div class="tool-content">
                     <h3>Estimate your bandwidth needs</h3>
                     <p>Determine the best internet speed for your household.</p>
@@ -53,13 +58,15 @@
 
         <section id="speed-guides">
             <h2>Speed troubleshooting guides</h2>
-            <div class="guide">
+            <div class="guide" data-aos="fade-left"
+            data-aos-duration="2000">
                 <h3>How to Fix Your Slow Internet</h3>
                 <p>Find out if your ISP is slowing down your internet connection by running speed tests through a VPN.</p>
                 <a class="guide-btn" href="resources.html#fix-slow-internet">View Guide</a>
             </div>
         
-            <div class="guide">
+            <div class="guide" data-aos="fade-right"
+            data-aos-duration="2000">
                 <h3>How Can I Tell If My ISP Is Throttling My Internet?</h3>
                 <p>Here’s a set of fixes for internet that regularly disconnects or slows down. This guide helps you diagnose and solve problems that disrupt your home network.</p>
                 <a class="guide-btn" href="resources.html#isp-throttling">View Guide</a>
@@ -112,6 +119,8 @@
   
   
     <script src="script.js"></script>
+    <script>AOS.init();
+    </script>
   </body>
   </html>
   

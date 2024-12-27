@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/about.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+
 
 </head>
 <body>
@@ -31,8 +34,10 @@
     <section class="about-us">
         <div class="container">
           <h1>About Us</h1>
-          <div class="intro-section">
-            <img src="imgs\N8VU66M-1.webp" alt="Intro Image" class="intro-image">
+          <div class="intro-section" data-aos="fade-left"
+          data-aos-duration="2000">
+            <img src="imgs\N8VU66M-1.webp" alt="Intro Image" class="intro-image" data-aos="fade-up"
+            data-aos-duration="2000">
             <p class="intro-text">
               Welcome to Elvito Communications, your trusted partner for internet, cable TV, Dish TV, broadband, and fiber satellite TV services. As an authorized dealer, we provide reliable, high-quality solutions to meet all your entertainment and connectivity needs.
               <br><br>
@@ -40,7 +45,8 @@
             </p>
           </div>
       
-          <div class="mission-section">
+          <div class="mission-section" data-aos="fade-left"
+          data-aos-duration="2000">
             <h2>Elevating Connectivity to New Heights</h2>
             <div class="mission-content">
               <p>
@@ -50,7 +56,8 @@
                 Competitive Pricing: Top services at great rates. <br>
                 Expert Support: Professional assistance always available.
               </p>
-              <img src="imgs\MTRFNYN-1.webp" alt="Mission Image" class="mission-image">
+              <img src="imgs\MTRFNYN-1.webp" alt="Mission Image" class="mission-image" data-aos="fade-up"
+              data-aos-duration="2000">
             </div>
           </div>
         </div>
@@ -98,6 +105,8 @@
   
   
     <script src="script.js"></script>
+    <script>AOS.init();
+    </script>
   </body>
   </html>
   

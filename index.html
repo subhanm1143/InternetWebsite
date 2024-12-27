@@ -6,10 +6,11 @@
     <title>Internet Provider Search</title>
     <link rel="stylesheet" href="css/styles.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
 
 </head>
 <body>
-    <!-- Header Navigation -->
     <header class="main-header">
       <div class="logo">
           <a href="index.html"><img src="imgs/Logo.png" alt="Logo"></a>
@@ -28,9 +29,10 @@
   </header>
   
   
+  
 
     <div class="hero-section">
-      <div class="text-container">
+        <div class="text-container" data-aos="fade-in" data-aos-duration="1000">
           <h1>Get the best internet in your area.</h1>
           <form class="search-bar" onsubmit="redirectToCompareProviders(event)">
               <input type="text" id="main-zip-code" name="zip" placeholder="Zip code" maxlength="5" minlength="5" required>
@@ -38,7 +40,7 @@
           </form>
           <p>Over 7,000,000 people use our free tool every year to search 1,600+ internet providers across the US.</p>
       </div>
-      <div class="image-container">
+      <div class="image-container" data-aos="fade-in" data-aos-duration="1000" data-aos-delay="300">
           <img src="imgs/HeroRight.png" alt="Internet Image">
       </div>
   </div>
@@ -66,7 +68,7 @@
       </div>
   </div>
 
-<div class="banner-section">
+<div class="banner-section" data-aos="flip-up" data-aos-duration="2000">
     <div class="banner">
         <img src="imgs\Elvito_2024-removebg-preview.png" alt="Annual Review 2024">
         <div class="banner-text">
@@ -77,31 +79,31 @@
     </div>
 </div>
 
-<div class="internet-help-section">
+<div class="internet-help-section" data-aos="zoom-in-down" data-aos-duration="2000">
     <i class="fas fa-wifi wifi-icon"></i>
     <h3>Looking for <span class="highlight">high-speed internet</span>? We’re here to help!</h3>
 </div>
 
 <div class="info-cards">
-  <div class="card">
+    <div class="card" data-aos="fade-right" data-aos-duration="2000">
       <img src="imgs\leverage.png" alt="Compare providers">
       <h3>Compare providers</h3>
       <p>Our comprehensive database of internet providers shows you the best internet options available in your zip code. Need help choosing? Our staff of internet experts has done the hard work of researching and reviewing providers so you can make an easy decision.</p>
       <a href="compareProviders.html" class="card-link">Find Providers &rsaquo;</a>
   </div>
-  <div class="card">
+  <div class="card" data-aos="fade-up" data-aos-duration="1000">
       <img src="imgs\troubleshoot-icon-15.jpg" alt="Troubleshoot problems">
       <h3>Troubleshoot problems</h3>
       <p>Experiencing spotty Wi-Fi or frustrating slowdowns with your internet connection? We can help you figure out what’s holding you back—and how to get the best performance out of your internet.</p>
       <a href="troubleshooting.html" class="card-link">Troubleshooting Guides &rsaquo;</a>
   </div>
-  <div class="card">
+  <div class="card" data-aos="fade-left" data-aos-duration="2000">
       <img src="imgs\understanding.png" alt="Understand your options">
       <h3>Understand your options</h3>
       <p>Fiber, cable, DSL, satellite... There are so many types of internet to choose from. Our team of internet experts can help you understand your options so you know what kind of internet to choose for your life—and what to avoid.</p>
       <a href="reviewProviders.html" class="card-link">See Your Options &rsaquo;</a>
   </div>
-  <div class="card">
+  <div class="card" data-aos="fade-up" data-aos-duration="1000">
       <h3>Speed up your internet</h3>
       <p>Get the speed you need to keep your life running smoothly. Whether you need to upgrade your connection or tips on how to speed up the internet you already have, we have you covered.</p>
       <a href="speed.html" class="card-link">Internet Speed Guide &rsaquo;</a>
@@ -544,27 +546,27 @@ sodipodi:docname="us.svg">
     <section class="service-type-section">
       <h2>Search for internet providers by service type</h2>
       <div class="service-type-cards">
-          <div class="service-card">
+          <div class="service-card" data-aos="flip-right" data-aos-duration="1000">
               <img src="imgs\dsl.svg" alt="DSL Icon">
               <p>DSL</p>
               <div class="tooltip">DSL: Uses phone lines for internet access, available in most areas.</div>
           </div>
-          <div class="service-card">
+          <div class="service-card" data-aos="flip-right" data-aos-duration="1000">
               <img src="imgs\cable.svg" alt="Cable Icon">
               <p>Cable</p>
               <div class="tooltip">Cable: Offers high-speed internet through cable TV lines.</div>
           </div>
-          <div class="service-card">
+          <div class="service-card" data-aos="flip-right" data-aos-duration="1000">
               <img src="imgs\fiber-internet.svg" alt="Fiber Icon">
               <p>Fiber</p>
               <div class="tooltip">Fiber: Ultra-fast internet using fiber-optic cables.</div>
           </div>
-          <div class="service-card">
+          <div class="service-card" data-aos="flip-right" data-aos-duration="1000">
               <img src="imgs\satellite-internet.svg" alt="Satellite Icon">
               <p>Satellite</p>
               <div class="tooltip">Satellite: Internet from satellites, suitable for remote areas.</div>
           </div>
-          <div class="service-card">
+          <div class="service-card" data-aos="flip-right" data-aos-duration="1000">
               <img src="imgs\fixed-wireless-internet.svg" alt="Wireless Icon">
               <p>Wireless</p>
               <div class="tooltip">Wireless: Internet via mobile networks or wireless signals.</div>

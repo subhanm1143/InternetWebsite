@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/resources.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
 </head>
 <body>
     <!-- Header Navigation -->
@@ -32,37 +34,37 @@
             <h1>Resources</h1>
             <p>Find quick links to our most important pages:</p>
             <div class="resource-cards">
-                <div class="resource-card">
+                <div class="resource-card" data-aos="fade-right" data-aos-duration="2000">
                     <h2>Internet Speed Test</h2>
                     <p>Check your internet speed to ensure you’re getting what you pay for.</p>
                     <a href="speed.html" class="card-link">Go to Speed Test</a>
                 </div>
-                <div class="resource-card">
+                <div class="resource-card" data-aos="fade-left" data-aos-duration="2000">
                     <h2>Troubleshooting</h2>
                     <p>Fix common internet issues with our step-by-step guides.</p>
                     <a href="troubleshooting.html" class="card-link">Go to Troubleshooting</a>
                 </div>
-                <div class="resource-card">
+                <div class="resource-card" data-aos="fade-right" data-aos-duration="2000">
                     <h2>Annual Review</h2>
                     <p>Read our in-depth analysis of the best ISPs in 2024.</p>
                     <a href="readmore.html" class="card-link">Go to Annual Review</a>
                 </div>
-                <div class="resource-card">
+                <div class="resource-card" data-aos="fade-left" data-aos-duration="2000">
                     <h2>Contact Us</h2>
                     <p>Have questions? Get in touch with our team for support.</p>
                     <a href="contact.html" class="card-link">Go to Contact Us</a>
                 </div>
-                <div class="resource-card">
+                <div class="resource-card" data-aos="fade-right" data-aos-duration="2000">
                     <h2>About Us</h2>
                     <p>Learn more about our mission and what we offer.</p>
                     <a href="about.html" class="card-link">Go to About Us</a>
                 </div>
-                <div class="resource-card">
+                <div class="resource-card" data-aos="fade-left" data-aos-duration="2000">
                     <h2>Compare Providers</h2>
                     <p>Find the best internet providers in your area.</p>
                     <a href="compareProviders.html" class="card-link">Go to Compare Providers</a>
                 </div>
-                <div class="resource-card">
+                <div class="resource-card" data-aos="fade-right" data-aos-duration="2000">
                     <h2>Review Providers</h2>
                     <p>See reviews of top internet providers across the country.</p>
                     <a href="reviewProviders.html" class="card-link">Go to Review Providers</a>
@@ -70,7 +72,7 @@
             </div>
         </section>
 
-        <section id="fix-slow-internet" class="fixes">
+        <section id="fix-slow-internet" class="fixes" data-aos="fade-left" data-aos-duration="2000">
             <h2>How to Fix Your Slow Internet</h3>
             <p>Having slow internet can be frustrating. Here are eight steps to troubleshoot and improve your connection:</p>
             <h3>1. Restart Your Modem and Router</h3>
@@ -91,7 +93,7 @@
             <p>Check your plan’s maximum speeds and upgrade if necessary. Use our <a href="compareProviders.html">comparison tool</a> to explore options.</p>
         </section>
         
-        <section id="isp-throttling" class="fixes">
+        <section id="isp-throttling" class="fixes" data-aos="fade-left" data-aos-duration="2000">
             <h2>How Can I Tell If My ISP Is Throttling My Internet?</h3>
             <p>ISPs may slow your connection intentionally. Follow these steps to identify and address throttling:</p>
             <h3>1. Monitor Internet Speed</h3>
@@ -113,7 +115,7 @@
         </section>
         
         
-        <section class="fixes" id="vpn-guide">
+        <section class="fixes" id="vpn-guide" data-aos="fade-left" data-aos-duration="2000">
             <h2>VPN Troubleshooting Guide</h2>
             <p>VPNs are excellent tools for protecting privacy and enhancing online security, but they sometimes come with their own set of challenges. Here’s a detailed guide to help you troubleshoot common VPN issues:</p>
         
@@ -180,5 +182,6 @@
       </footer>
 
     <script src="script.js"></script>
+    <script>AOS.init();</script>
 </body>
 </html>

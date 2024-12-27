@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/contact.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
 </head>
 <body>
     <!-- Header Navigation -->
@@ -33,7 +35,8 @@
             <h1>Contact Us</h1>
             <div class="contact-container">
                 <!-- Left: Contact Form -->
-                <div class="contact-form">
+                <div class="contact-form" data-aos="zoom-out-right"
+                data-aos-duration="2000">
                     <h2>Send Us a Message</h2>
                     <form action="submitForm.html" method="POST">
                         <input type="text" name="name" placeholder="Your Name" required>
@@ -43,7 +46,8 @@
                     </form>
                 </div>
                 <!-- Right: Call Bubble -->
-                <div class="contact-call">
+                <div class="contact-call" data-aos="zoom-out-down"
+                data-aos-duration="2000">
                     <div class="call-bubble">
                         <p>Call Us</p>
                         <p>+1-800-123-4567</p>
@@ -90,5 +94,7 @@
       </footer>
 
     <script src="script.js"></script>
+    <script>AOS.init();
+    </script>
 </body>
 </html>

@@ -1,3 +1,4 @@
+AOS.init();
 const root = document.documentElement;
 const marqueeElementsDisplayed = getComputedStyle(root).getPropertyValue("--marquee-elements-displayed");
 const marqueeContent = document.querySelector("ul.marquee-content");
@@ -24,52 +25,31 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(csvText => {
             const rows = csvText.split('\n').slice(1); // Remove the header row
             broadbandData = rows.map(row => {
-                const [
-                    zip, population, county, state, wiredCount_2020, fwcount_2020,
-                    allProviderCount_2020, wired25_3_2020, wired100_3_2020, all25_3_2020,
-                    all100_3, testCount, averageMbps, fastestAverageMbps, 
-                    accessToTerrestrialBroadband, lowestPricedTerrestrialBroadbandPlan,
-                    wiredCount_2015, fwcount_2015, allProviderCount_2015, wired25_3_2015,
-                    wired100_3_2015, all25_3_2015
-                ] = row.split(',');
+                const [Provider, Plan, Price, Speed, ZipCode, City, State, ImagePath] = row.split(',');
 
                 return {
-                    zip: zip.trim(),
-                    population,
-                    county,
-                    state,
-                    wiredCount_2020,
-                    fwcount_2020,
-                    allProviderCount_2020,
-                    wired25_3_2020,
-                    wired100_3_2020,
-                    all25_3_2020,
-                    all100_3,
-                    testCount,
-                    averageMbps,
-                    fastestAverageMbps,
-                    accessToTerrestrialBroadband,
-                    lowestPricedTerrestrialBroadbandPlan, // Trim whitespace
-                    wiredCount_2015,
-                    fwcount_2015,
-                    allProviderCount_2015,
-                    wired25_3_2015,
-                    wired100_3_2015,
-                    all25_3_2015,
-                    all100_3
+                    Provider: Provider.trim(),
+                    Plan: Plan,
+                    Price: Price,
+                    Speed: Speed,
+                    ZipCode: ZipCode,
+                    City: City,
+                    State: State,
+                    ImagePath: ImagePath
                 };
             });
-
-            // Click event for each state
-            map.querySelectorAll('path').forEach((statePath) => {
-                statePath.addEventListener('click', () => {
-                    const stateName = statePath.getAttribute('data-name');
-                    selectedState.textContent = stateName;
-                    displayBroadbandInfoForState(stateName, broadbandData);
-                });
-            });
+            console.log("Broadband data loaded:", broadbandData);
         })
         .catch(error => console.error('Error loading CSV:', error));
+
+    // Handle state selection
+    map.querySelectorAll('path').forEach((statePath) => {
+        statePath.addEventListener('click', () => {
+            const stateName = statePath.getAttribute('data-name');
+            selectedState.textContent = stateName;
+            displayBroadbandInfoForState(stateName, broadbandData);
+        });
+    });
 
     // Handle ZIP search
     searchForm.addEventListener('submit', (e) => {
@@ -87,10 +67,21 @@ function displayBroadbandInfoForState(stateName, broadbandData) {
         return;
     }
 
-    const stateData = broadbandData
-        .filter(entry => entry.state === stateName && entry.lowestPricedTerrestrialBroadbandPlan !== '' && !isNaN(entry.lowestPricedTerrestrialBroadbandPlan));
+    // Filter and sort data
+    const stateData = broadbandData.filter(entry => entry.State === stateName)
+                                   .sort((a, b) => a.Price - b.Price);
 
-    if (stateData.length === 0) {
+    // Deduplicate by Provider
+    const uniqueProviders = [];
+    const deduplicatedData = stateData.filter(entry => {
+        if (!uniqueProviders.includes(entry.Provider)) {
+            uniqueProviders.push(entry.Provider);
+            return true;
+        }
+        return false;
+    }).slice(0, 5); // Take top 5 entries
+
+    if (deduplicatedData.length === 0) {
         broadbandInfo.innerHTML = `
             <h3>Broadband Data for ${stateName}</h3>
             <p>No broadband data available.</p>
@@ -98,12 +89,9 @@ function displayBroadbandInfoForState(stateName, broadbandData) {
         return;
     }
 
-    const top5 = stateData
-        .sort((a, b) => parseFloat(a.lowestPricedTerrestrialBroadbandPlan) - parseFloat(b.lowestPricedTerrestrialBroadbandPlan))
-        .slice(0, 5);
-
-    broadbandInfo.innerHTML = generateTable('Broadband Data for ' + stateName, top5);
+    broadbandInfo.innerHTML = generateCards(`Broadband Data for ${stateName}`, deduplicatedData);
 }
+
 
 function displayBroadbandInfoForZip(zipCode, broadbandData) {
     const broadbandInfo = document.querySelector('#broadband-info');
@@ -113,8 +101,7 @@ function displayBroadbandInfoForZip(zipCode, broadbandData) {
         return;
     }
 
-    const zipData = broadbandData
-        .filter(entry => entry.zip === zipCode && entry.lowestPricedTerrestrialBroadbandPlan !== '' && !isNaN(entry.lowestPricedTerrestrialBroadbandPlan));
+    const zipData = broadbandData.filter(entry => entry.ZipCode === zipCode);
 
     if (zipData.length === 0) {
         broadbandInfo.innerHTML = `
@@ -124,137 +111,150 @@ function displayBroadbandInfoForZip(zipCode, broadbandData) {
         return;
     }
 
-    const top5 = zipData
-        .sort((a, b) => parseFloat(a.lowestPricedTerrestrialBroadbandPlan) - parseFloat(b.lowestPricedTerrestrialBroadbandPlan))
-        .slice(0, 5);
-
-    broadbandInfo.innerHTML = generateTable('Broadband Data for ZIP: ' + zipCode, top5);
+    broadbandInfo.innerHTML = generateCards(`Broadband Data for ZIP: ${zipCode}`, zipData);
 }
 
-function generateTable(title, data) {
-    const tableHeader = `
-        <tr>
-            <th>Rank</th>
-            <th>County</th>
-            <th>ZIP</th>
-            <th>Population</th>
-            <th>Lowest Priced Plan ($)</th>
-            <th>Fastest Average Mbps</th>
-            <th>Access to Broadband</th>
-        </tr>
-    `;
-
-    const tableRows = data.map((entry, index) => `
-        <tr>
-            <td>${index + 1}</td>
-            <td>${entry.county}</td>
-            <td>${entry.zip}</td>
-            <td>${entry.population}</td>
-            <td>$${entry.lowestPricedTerrestrialBroadbandPlan}</td>
-            <td>${entry.fastestAverageMbps}</td>
-            <td>${entry.accessToTerrestrialBroadband}</td>
-        </tr>
+function generateCards(title, data) {
+    const cards = data.map(entry => `
+        <div class="provider-card" data-aos="zoom-in-up">
+            <div class="provider-card-header">
+                <div class="provider-name">${entry.Provider || 'Unknown Provider'}</div>
+                <div class="availability">
+                    <img src="imgs/check.svg" alt="Check" class="check-icon">
+                    ${entry.Availability || 'Available'}
+                </div>
+            </div>
+            <div class="provider-card-main">
+                <div class="provider-logo-container">
+                    <img src="${entry.ImagePath || ''}" alt="${entry.Provider} Logo" class="provider-logo">
+                </div>
+                <div class="provider-details">
+                    <p><strong>Connection:</strong> ${entry.Connection || 'N/A'}</p>
+                    <p><strong>Price:</strong> ${entry.Price || 'N/A'}</p>
+                </div>
+                <div class="provider-speed">
+                    <p><strong>Download speeds:</strong></p>
+                    <p class="speed-value">${entry.Speed || 'N/A'}</p>
+                </div>
+                <div class="provider-rating">
+                    <div class="stars">
+                        <span class="star">&#9733;</span>
+                        <span class="star">&#9733;</span>
+                        <span class="star">&#9733;</span>
+                        <span class="star">&#9733;</span>
+                        <span class="star">&#9734;</span>
+                    </div>
+                    <p class="user-rating">User Rating (${entry.Rating || '0'})<sup>◊</sup></p>
+                </div>
+                <div class="provider-button">
+                    <button class="view-plan-btn">View Plans</button>
+                </div>
+            </div>
+        </div>
     `).join('');
 
     return `
         <h3>${title}</h3>
-        <table>
-            ${tableHeader}
-            ${tableRows}
-        </table>
+        <div class="cards-container">
+            ${cards}
+        </div>
     `;
 }
 
 document.addEventListener('DOMContentLoaded', () => {
     console.log("DOM fully loaded and parsed");
-  
+
     const searchButton = document.getElementById('search-button');
     const zipCodeInput = document.getElementById('zip-code-input');
     const broadbandInfo = document.getElementById('broadband-info');
-    console.log("inside");
-    
+    console.log("Elements loaded: ", { searchButton, zipCodeInput, broadbandInfo });
+
     let broadbandData = [];
-    
+
+    // Fetch the CSV file
     fetch('broadband_data.csv')
-      .then(response => {
-        console.log("CSV fetched");
-        return response.text();
-      })
-      .then(csvText => {
-        console.log("CSV content loaded:", csvText);
-        const rows = csvText.split('\n').slice(1);
-        broadbandData = rows.map(row => {
-          const [
-            zip, population, county, state, wiredCount, ,
-            , , , , , , avgMbps, ,
-            , lowestPrice
-          ] = row.split(',');
-  
-          return {
-            zip: zip.trim(),
-            population: population.trim(),
-            county: county.trim(),
-            state: state.trim(),
-            wiredCount: wiredCount.trim(),
-            avgMbps: avgMbps.trim(),
-            lowestPrice: lowestPrice.trim()
-          };
-        });
-        console.log("Parsed broadband data:", broadbandData);
-      })
-      .catch(error => console.error('Error loading CSV:', error));
-    
+        .then(response => {
+            console.log("CSV fetch response status:", response.status);
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.text();
+        })
+        .then(csvText => {
+            console.log("CSV content loaded:", csvText.slice(0, 100)); // Preview first 100 chars
+            const rows = csvText.split('\n').slice(1); // Skip header
+            broadbandData = rows.map(row => {
+                const [Provider, Plan, Price, Speed, ZipCode, City, State] = row.split(',');
+
+                const entry = {
+                    Provider: Provider?.trim(),
+                    Plan: Plan?.trim(),
+                    Price: Price?.trim(),
+                    Speed: Speed?.trim(),
+                    ZipCode: ZipCode?.trim(),
+                    City: City?.trim(),
+                    State: State?.trim()
+                };
+
+                console.log("Parsed row: ", entry);
+                return entry;
+            });
+
+            console.log("Parsed broadband data: ", broadbandData);
+        })
+        .catch(error => console.error('Error loading CSV:', error));
+
     searchButton.addEventListener('click', () => {
-      console.log("Search button clicked");
-      const zipCode = zipCodeInput.value.trim();
-      console.log("Searching for ZIP:", zipCode);
-      displayBroadbandInfo(zipCode, broadbandData);
+        console.log("Search button clicked");
+        const zipCode = zipCodeInput.value.trim();
+        console.log("Searching for ZIP:", zipCode);
+        displayBroadbandInfo(zipCode, broadbandData);
     });
-    
+
     function displayBroadbandInfo(zipCode, data) {
-      console.log("Displaying info for ZIP:", zipCode);
-      const zipData = data.filter(entry => entry.zip === zipCode);
-      console.log("Filtered data:", zipData);
-  
-      if (zipData.length === 0) {
-        broadbandInfo.innerHTML = `<p>No broadband data available for ZIP code: ${zipCode}</p>`;
-        return;
-      }
-  
-      const tableHeader = `
-        <table>
-          <thead>
+        console.log("Displaying info for ZIP:", zipCode);
+        const zipData = data.filter(entry => entry.ZipCode === zipCode);
+        console.log("Filtered data for ZIP:", zipData);
+
+        if (zipData.length === 0) {
+            broadbandInfo.innerHTML = `<p>No broadband data available for ZIP code: ${zipCode}</p>`;
+            return;
+        }
+
+        const tableHeader = `
+            <table>
+                <thead>
+                    <tr>
+                        <th>Provider</th>
+                        <th>Plan</th>
+                        <th>Price</th>
+                        <th>Speed</th>
+                        <th>Zip Code</th>
+                        <th>City</th>
+                        <th>State</th>
+                    </tr>
+                </thead>
+                <tbody>
+        `;
+
+        const tableRows = zipData.map(entry => `
             <tr>
-              <th>ZIP Code</th>
-              <th>Population</th>
-              <th>County</th>
-              <th>State</th>
-              <th>Wired Count</th>
-              <th>Average Mbps</th>
-              <th>Lowest Priced Plan</th>
+                <td>${entry.Provider}</td>
+                <td>${entry.Plan}</td>
+                <td>${entry.Price}</td>
+                <td>${entry.Speed}</td>
+                <td>${entry.ZipCode}</td>
+                <td>${entry.City}</td>
+                <td>${entry.State}</td>
             </tr>
-          </thead>
-          <tbody>
-      `;
-  
-      const tableRows = zipData.map(entry => `
-        <tr>
-          <td>${entry.zip}</td>
-          <td>${entry.population}</td>
-          <td>${entry.county}</td>
-          <td>${entry.state}</td>
-          <td>${entry.wiredCount}</td>
-          <td>${entry.avgMbps}</td>
-          <td>$${entry.lowestPrice}</td>
-        </tr>
-      `).join('');
-  
-      const tableFooter = '</tbody></table>';
-  
-      broadbandInfo.innerHTML = tableHeader + tableRows + tableFooter;
+        `).join('');
+
+        broadbandInfo.innerHTML = tableHeader + tableRows + '</tbody></table>';
     }
-  });
-  function redirectToCompareProviders(event) {
+});
+
+
+function redirectToCompareProviders(event) {
     event.preventDefault(); // Prevent default form submission
     const zipCodeInput = document.getElementById("main-zip-code").value.trim();
     if (zipCodeInput) {
@@ -262,6 +262,7 @@ document.addEventListener('DOMContentLoaded', () => {
         window.location.href = `compareProviders.html?zip=${zipCodeInput}`;
     }
 }
+
 document.addEventListener('DOMContentLoaded', () => {
     const searchInput = document.getElementById('search-input');
     const searchResults = document.getElementById('search-results');
