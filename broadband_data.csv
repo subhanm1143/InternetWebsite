@@ -1,56 +1,56 @@
-Provider,Plan,Price,Speed,ZipCode,City,State,ImagePath
-Kinetic,300 Mbps,$39.99,300 Mbps,95834,Sacramento,California,imgs/Kinetic-e1733427039363.webp
-Kinetic,1 Gig,$39.99,1 Gig,95834,Sacramento,California,imgs/Kinetic-e1733427039363.webp
-Kinetic,2 Gig,$99.99,2 Gig,95834,Sacramento,California,imgs/Kinetic-e1733427039363.webp
-MetroNet,150Mbps,$34.95,150Mbps,95833,Sacramento,California,imgs/Metronet-Reseller-Logo_2022.webp
-MetroNet,500Mbps,$44.95,500Mbps,95833,Sacramento,California,imgs/Metronet-Reseller-Logo_2022.webp
-MetroNet,1 Gb Internet,$49.95,1 GB,95833,Sacramento,California,imgs/Metronet-Reseller-Logo_2022.webp
-MetroNet,1 Gb + Whole Home Wi-Fi,$59.95,1 GB,95833,Sacramento,California,imgs/Metronet-Reseller-Logo_2022.webp
-MetroNet,2 Gb Internet,$89.95,2 GB,95833,Sacramento,California,imgs/Metronet-Reseller-Logo_2022.webp
-Optimum,300 Mbps Internet,$40.00,300Mbps,67011,Andover,Kansas,imgs/Opt_Auth_Reseller_Logo_Vert_POS_RGB.webp
-Optimum,1 Gig Internet,$60.00,940Mbps,67011,Andover,Kansas,imgs/Opt_Auth_Reseller_Logo_Vert_POS_RGB.webp
-Optimum,300 Mbps Fiber,$40.00,300Mbps,67011,Andover,Kansas,imgs/Opt_Auth_Reseller_Logo_Vert_POS_RGB.webp
-Optimum,500 Mbps Fiber,$60.00,500Mbps,67011,Andover,Kansas,imgs/Opt_Auth_Reseller_Logo_Vert_POS_RGB.webp
-Optimum,1 Gig Fiber,$60.00,940Mbps,67011,Andover,Kansas,imgs/Opt_Auth_Reseller_Logo_Vert_POS_RGB.webp
-Optimum,2 Gig Fiber,$120.00,2 GB,67011,Andover,Kansas,imgs/Opt_Auth_Reseller_Logo_Vert_POS_RGB.webp
-Optimum,5 Gig Fiber,$180.00,5 GB,67011,Andover,Kansas,imgs/Opt_Auth_Reseller_Logo_Vert_POS_RGB.webp
-Optimum,8 Gig Fiber,$280.00,8 GB,67011,Andover,Kansas,imgs/Opt_Auth_Reseller_Logo_Vert_POS_RGB.webp
-Viasat,Unlimited Bronze 12,$69.99,12Mbps,95834,Sacramento,California,imgs\Untitled_design-removebg-preview-e1733427718921.webp
-Viasat,Unlimited Silver 12,$99.99,12Mbps,95834,Sacramento,California,imgs\Untitled_design-removebg-preview-e1733427718921.webp
-Viasat,Viasat Unleashed,$119.99,150Mbps,95834,Sacramento,California,imgs\Untitled_design-removebg-preview-e1733427718921.webp
-Viasat,Unlimited Gold 12,$149.99,12Mbps,95834,Sacramento,California,imgs\Untitled_design-removebg-preview-e1733427718921.webp
-AltaFiber,600 Mbps,$39.99,600 Mbps,10001,New York,New York,imgs/altafiber-logo-e1733426663755.webp
-AltaFiber,1 Gb,$59.99,1 Gb,10001,New York,New York,imgs/altafiber-logo-e1733426663755.webp
-AltaFiber,2 Gb,$79.99,2 Gb,10001,New York,New York,imgs/altafiber-logo-e1733426663755.webp
-AT&T,Internet 100,$60.00,100Mbps,95833,Sacramento,California,imgs/Atat-e1733268234526.webp
-AT&T,Internet 300,$55.00,300Mbps,95833,Sacramento,California,imgs/Atat-e1733268234526.webp
-AT&T,Internet 500,$65.00,500Mbps,95833,Sacramento,California,imgs/Atat-e1733268234526.webp
-AT&T,Internet 1 GIG,$80.00,1 GB,95833,Sacramento,California,imgs/Atat-e1733268234526.webp
-AT&T,Internet 2 GIG,$145.00,2 GB,95833,Sacramento,California,imgs/Atat-e1733268234526.webp
-AT&T,Internet 5 GIG,$245.00,5 GB,95833,Sacramento,California,imgs/Atat-e1733268234526.webp
-AT&T,Internet Air,$60.00,75–225Mbps,95833,Sacramento,California,imgs/Atat-e1733268234526.webp
-Brightspeed,Up to 15 Mbps,$50.00,15Mbps,67011,Andover,Kansas,imgs/BrightspeedAuthorizedAgentLogo-e1733426870507.webp
-Brightspeed,Internet DSL,$50.00,40Mbps,67011,Andover,Kansas,imgs/BrightspeedAuthorizedAgentLogo-e1733426870507.webp
-Brightspeed,Fiber 200,$39.00,200Mbps,67011,Andover,Kansas,imgs/BrightspeedAuthorizedAgentLogo-e1733426870507.webp
-Brightspeed,Fiber 500,$59.00,500Mbps,67011,Andover,Kansas,imgs/BrightspeedAuthorizedAgentLogo-e1733426870507.webp
-Brightspeed,Fiber 1 Gig,$59.00,940Mbps,67011,Andover,Kansas,imgs/BrightspeedAuthorizedAgentLogo-e1733426870507.webp
-Brightspeed,Fiber 2 Gig,$79.00,2 GB,67011,Andover,Kansas,imgs/BrightspeedAuthorizedAgentLogo-e1733426870507.webp
-Earthlink,18 Mbps Internet,$64.95,18 Mbps,95834,Sacramento,California,imgs/ELReseller_Logo_Primary_Pos_rgb-e1733426770741.webp
-Earthlink,24 Mbps Internet,$64.95,24 Mbps,95834,Sacramento,California,imgs/ELReseller_Logo_Primary_Pos_rgb-e1733426770741.webp
-Earthlink,45 Mbps Internet,$64.95,45 Mbps,95834,Sacramento,California,imgs/ELReseller_Logo_Primary_Pos_rgb-e1733426770741.webp
-Earthlink,75 Mbps Internet,$64.95,75 Mbps,95834,Sacramento,California,imgs/ELReseller_Logo_Primary_Pos_rgb-e1733426770741.webp
-Earthlink,Fiber 100,$39.95,100 Mbps,95834,Sacramento,California,imgs/ELReseller_Logo_Primary_Pos_rgb-e1733426770741.webp
-Earthlink,Fiber 300,$49.95,300 Mbps,95834,Sacramento,California,imgs/ELReseller_Logo_Primary_Pos_rgb-e1733426770741.webp
-Earthlink,Fiber 500,$79.95,500 Mbps,95834,Sacramento,California,imgs/ELReseller_Logo_Primary_Pos_rgb-e1733426770741.webp
-Earthlink,Fiber 1 Gig,$74.95,1 GB,95834,Sacramento,California,imgs/ELReseller_Logo_Primary_Pos_rgb-e1733426770741.webp
-Earthlink,Fiber 2 Gig,$129.95,2 GB,95834,Sacramento,California,imgs/ELReseller_Logo_Primary_Pos_rgb-e1733426770741.webp
-Earthlink,Fiber 5 Gig,$189.95,5 GB,95834,Sacramento,California,imgs/ELReseller_Logo_Primary_Pos_rgb-e1733426770741.webp
-Frontier,Fiber 200,$29.99,200Mbps,10001,New York,New York,imgs/Frontier_AuthSalesAgent_Secondary_RGB_Red-e1733426530921.webp
-Frontier,Fiber 500,$44.99,500Mbps,10001,New York,New York,imgs/Frontier_AuthSalesAgent_Secondary_RGB_Red-e1733426530921.webp
-Frontier,Fiber 1 Gig,$69.99,1 GB,10001,New York,New York,imgs/Frontier_AuthSalesAgent_Secondary_RGB_Red-e1733426530921.webp
-Frontier,Fiber 2 Gig,$99.99,2 GB,10001,New York,New York,imgs/Frontier_AuthSalesAgent_Secondary_RGB_Red-e1733426530921.webp
-Frontier,Fiber 5 Gig,$129.99,5 GB,10001,New York,New York,imgs/Frontier_AuthSalesAgent_Secondary_RGB_Red-e1733426530921.webp
-Frontier,Fiber 7 Gig,$299.99,7 GB,10001,New York,New York,imgs/Frontier_AuthSalesAgent_Secondary_RGB_Red-e1733426530921.webp
-HughesNet,Select,$49.99,50Mbps,67011,Andover,Kansas,imgs/HughesNet-e1733268164527.webp
-HughesNet,Elite,$64.99,100Mbps,67011,Andover,Kansas,imgs/HughesNet-e1733268164527.webp
-HughesNet,Fusion,$94.99,100Mbps,67011,Andover,Kansas,imgs/HughesNet-e1733268164527.webp
+Provider,Plan,Price,Speed,ZipCode,City,State,ImagePath,Rating,Connection
+Kinetic,300 Mbps,$39.99,300 Mbps,95834,Sacramento,California,imgs/Kinetic-e1733427039363.webp,4.2, Fiber and DSL
+Kinetic,1 Gig,$39.99,1 Gig,95834,Sacramento,California,imgs/Kinetic-e1733427039363.webp,4.3, Fiber and DSL
+Kinetic,2 Gig,$99.99,2 Gig,95834,Sacramento,California,imgs/Kinetic-e1733427039363.webp,4.4, Fiber and DSL
+MetroNet,150Mbps,$34.95,150Mbps,95833,Sacramento,California,imgs/Metronet-Reseller-Logo_2022.webp,4.5, Fiber
+MetroNet,500Mbps,$44.95,500Mbps,95833,Sacramento,California,imgs/Metronet-Reseller-Logo_2022.webp,4.6, Fiber
+MetroNet,1 Gb Internet,$49.95,1 GB,95833,Sacramento,California,imgs/Metronet-Reseller-Logo_2022.webp,4.5, Fiber
+MetroNet,1 Gb + Whole Home Wi-Fi,$59.95,1 GB,95833,Sacramento,California,imgs/Metronet-Reseller-Logo_2022.webp,4.7, Fiber
+MetroNet,2 Gb Internet,$89.95,2 GB,95833,Sacramento,California,imgs/Metronet-Reseller-Logo_2022.webp,4.6, Fiber
+Optimum,300 Mbps Internet,$40.00,300Mbps,67011,Andover,Kansas,imgs/Opt_Auth_Reseller_Logo_Vert_POS_RGB.webp,4.1, Cable and Fiber
+Optimum,1 Gig Internet,$60.00,940Mbps,67011,Andover,Kansas,imgs/Opt_Auth_Reseller_Logo_Vert_POS_RGB.webp,4.3, Cable and Fiber
+Optimum,300 Mbps Fiber,$40.00,300Mbps,67011,Andover,Kansas,imgs/Opt_Auth_Reseller_Logo_Vert_POS_RGB.webp,4.2, Cable and Fiber
+Optimum,500 Mbps Fiber,$60.00,500Mbps,67011,Andover,Kansas,imgs/Opt_Auth_Reseller_Logo_Vert_POS_RGB.webp,4.4, Cable and Fiber
+Optimum,1 Gig Fiber,$60.00,940Mbps,67011,Andover,Kansas,imgs/Opt_Auth_Reseller_Logo_Vert_POS_RGB.webp,4.5, Cable and Fiber
+Optimum,2 Gig Fiber,$120.00,2 GB,67011,Andover,Kansas,imgs/Opt_Auth_Reseller_Logo_Vert_POS_RGB.webp,4.3, Cable and Fiber
+Optimum,5 Gig Fiber,$180.00,5 GB,67011,Andover,Kansas,imgs/Opt_Auth_Reseller_Logo_Vert_POS_RGB.webp,4.4, Cable and Fiber
+Optimum,8 Gig Fiber,$280.00,8 GB,67011,Andover,Kansas,imgs/Opt_Auth_Reseller_Logo_Vert_POS_RGB.webp,4.5, Cable and Fiber
+Viasat,Unlimited Bronze 12,$69.99,12Mbps,95834,Sacramento,California,imgs/Untitled_design-removebg-preview-e1733427718921.webp,3.8, Satellite
+Viasat,Unlimited Silver 12,$99.99,12Mbps,95834,Sacramento,California,imgs/Untitled_design-removebg-preview-e1733427718921.webp,3.9, Satellite
+Viasat,Viasat Unleashed,$119.99,150Mbps,95834,Sacramento,California,imgs/Untitled_design-removebg-preview-e1733427718921.webp,4.0, Satellite
+Viasat,Unlimited Gold 12,$149.99,12Mbps,95834,Sacramento,California,imgs/Untitled_design-removebg-preview-e1733427718921.webp,4.1, Satellite
+AltaFiber,600 Mbps,$39.99,600 Mbps,10001,New York,New York,imgs/altafiber-logo-e1733426663755.webp,4.3, Fiber
+AltaFiber,1 Gb,$59.99,1 Gb,10001,New York,New York,imgs/altafiber-logo-e1733426663755.webp,4.4, Fiber
+AltaFiber,2 Gb,$79.99,2 Gb,10001,New York,New York,imgs/altafiber-logo-e1733426663755.webp,4.5, Fiber
+AT&T,Internet 100,$60.00,100Mbps,95833,Sacramento,California,imgs/Atat-e1733268234526.webp,4.2, Cable Fiber DSL
+AT&T,Internet 300,$55.00,300Mbps,95833,Sacramento,California,imgs/Atat-e1733268234526.webp,4.3, Cable Fiber DSL
+AT&T,Internet 500,$65.00,500Mbps,95833,Sacramento,California,imgs/Atat-e1733268234526.webp,4.4, Cable Fiber DSL
+AT&T,Internet 1 GIG,$80.00,1 GB,95833,Sacramento,California,imgs/Atat-e1733268234526.webp,4.5, Cable Fiber DSL
+AT&T,Internet 2 GIG,$145.00,2 GB,95833,Sacramento,California,imgs/Atat-e1733268234526.webp,4.6, Cable Fiber DSL
+AT&T,Internet 5 GIG,$245.00,5 GB,95833,Sacramento,California,imgs/Atat-e1733268234526.webp,4.7, Cable Fiber DSL
+AT&T,Internet Air,$60.00,75–225Mbps,95833,Sacramento,California,imgs/Atat-e1733268234526.webp,4.2, Cable Fiber DSL
+Brightspeed,Up to 15 Mbps,$50.00,15Mbps,67011,Andover,Kansas,imgs/BrightspeedAuthorizedAgentLogo-e1733426870507.webp,3.7, Fiber and DSL
+Brightspeed,Internet DSL,$50.00,40Mbps,67011,Andover,Kansas,imgs/BrightspeedAuthorizedAgentLogo-e1733426870507.webp,3.8, Fiber and DSL
+Brightspeed,Fiber 200,$39.00,200Mbps,67011,Andover,Kansas,imgs/BrightspeedAuthorizedAgentLogo-e1733426870507.webp,3.9, Fiber and DSL
+Brightspeed,Fiber 500,$59.00,500Mbps,67011,Andover,Kansas,imgs/BrightspeedAuthorizedAgentLogo-e1733426870507.webp,4.0, Fiber and DSL
+Brightspeed,Fiber 1 Gig,$59.00,940Mbps,67011,Andover,Kansas,imgs/BrightspeedAuthorizedAgentLogo-e1733426870507.webp,4.1, Fiber and DSL
+Brightspeed,Fiber 2 Gig,$79.00,2 GB,67011,Andover,Kansas,imgs/BrightspeedAuthorizedAgentLogo-e1733426870507.webp,4.2, Fiber and DSL
+Earthlink,18 Mbps Internet,$64.95,18 Mbps,95834,Sacramento,California,imgs/ELReseller_Logo_Primary_Pos_rgb-e1733426770741.webp,3.9, Satellite
+Earthlink,24 Mbps Internet,$64.95,24 Mbps,95834,Sacramento,California,imgs/ELReseller_Logo_Primary_Pos_rgb-e1733426770741.webp,4.0, Satellite
+Earthlink,45 Mbps Internet,$64.95,45 Mbps,95834,Sacramento,California,imgs/ELReseller_Logo_Primary_Pos_rgb-e1733426770741.webp,4.1, Satellite
+Earthlink,75 Mbps Internet,$64.95,75 Mbps,95834,Sacramento,California,imgs/ELReseller_Logo_Primary_Pos_rgb-e1733426770741.webp,4.2, Satellite
+Earthlink,Fiber 100,$39.95,100 Mbps,95834,Sacramento,California,imgs/ELReseller_Logo_Primary_Pos_rgb-e1733426770741.webp,4.3, Satellite
+Earthlink,Fiber 300,$49.95,300 Mbps,95834,Sacramento,California,imgs/ELReseller_Logo_Primary_Pos_rgb-e1733426770741.webp,4.4, Satellite
+Earthlink,Fiber 500,$79.95,500 Mbps,95834,Sacramento,California,imgs/ELReseller_Logo_Primary_Pos_rgb-e1733426770741.webp,4.5, Satellite
+Earthlink,Fiber 1 Gig,$74.95,1 GB,95834,Sacramento,California,imgs/ELReseller_Logo_Primary_Pos_rgb-e1733426770741.webp,4.6, Satellite
+Earthlink,Fiber 2 Gig,$129.95,2 GB,95834,Sacramento,California,imgs/ELReseller_Logo_Primary_Pos_rgb-e1733426770741.webp,4.7, Satellite
+Earthlink,Fiber 5 Gig,$189.95,5 GB,95834,Sacramento,California,imgs/ELReseller_Logo_Primary_Pos_rgb-e1733426770741.webp,4.8, Satellite
+Frontier,Fiber 200,$29.99,200Mbps,10001,New York,New York,imgs/Frontier_AuthSalesAgent_Secondary_RGB_Red-e1733426530921.webp,4.2, Fiber and DSL
+Frontier,Fiber 500,$44.99,500Mbps,10001,New York,New York,imgs/Frontier_AuthSalesAgent_Secondary_RGB_Red-e1733426530921.webp,4.3, Fiber and DSL
+Frontier,Fiber 1 Gig,$69.99,1 GB,10001,New York,New York,imgs/Frontier_AuthSalesAgent_Secondary_RGB_Red-e1733426530921.webp,4.4, Fiber and DSL
+Frontier,Fiber 2 Gig,$99.99,2 GB,10001,New York,New York,imgs/Frontier_AuthSalesAgent_Secondary_RGB_Red-e1733426530921.webp,4.5, Fiber and DSL
+Frontier,Fiber 5 Gig,$129.99,5 GB,10001,New York,New York,imgs/Frontier_AuthSalesAgent_Secondary_RGB_Red-e1733426530921.webp,4.6, Fiber and DSL
+Frontier,Fiber 7 Gig,$299.99,7 GB,10001,New York,New York,imgs/Frontier_AuthSalesAgent_Secondary_RGB_Red-e1733426530921.webp,4.7, Fiber and DSL
+HughesNet,Select,$49.99,50Mbps,67011,Andover,Kansas,imgs/HughesNet-e1733268164527.webp,3.8, Satellite
+HughesNet,Elite,$64.99,100Mbps,67011,Andover,Kansas,imgs/HughesNet-e1733268164527.webp,3.9, Satellite
+HughesNet,Fusion,$94.99,100Mbps,67011,Andover,Kansas,imgs/HughesNet-e1733268164527.webp,4.0, Satellite

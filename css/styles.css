@@ -738,59 +738,56 @@ tr:nth-child(even) {
     background-color: #0057A3;
 }
 
-.cards-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 30px;
-  justify-content: space-around;
-}
-
 .provider-card {
-  border: 1px solid #ddd;
+  background: linear-gradient(#0057A3,grey);
+  color: white;
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  background-color: #fff;
-  margin: 20px 0;
-  max-width: 800px;
+  padding: 20px;
+  max-width: 900px;
+  margin: 20px auto;
+  font-family: Arial, sans-serif;
+  border: 1px solid #ddd;
 }
 
 .provider-card-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px;
-  background-color: #f4f4f4;
-  font-size: 16px;
+  border-bottom: 2px solid #fff;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
 }
 
-.provider-name {
+.provider-card-header h3 {
+  font-size: 20px;
   font-weight: bold;
 }
 
 .availability {
+  font-size: 14px;
   display: flex;
   align-items: center;
-  font-size: 14px;
+  color: #4caf50;
 }
 
-.check-icon {
-  width: 16px;
-  height: 16px;
+.availability img {
   margin-right: 5px;
+  width: 16px;
 }
 
 .provider-card-main {
   display: flex;
-  flex-wrap: wrap;
+  justify-content: space-between;
   align-items: center;
-  padding: 20px;
-  gap: 20px;
+  padding: 10px 0;
 }
 
 .provider-logo-container {
-  flex: 0 0 15%;
+  flex: 1;
   text-align: center;
+  border-right: 2px solid #fff;
+  padding-right: 10px;
 }
 
 .provider-logo {
@@ -798,41 +795,38 @@ tr:nth-child(even) {
   height: auto;
 }
 
-.provider-details {
-  flex: 0 0 20%;
-}
-
-.provider-details p {
-  margin: 5px 0;
-  font-size: 14px;
+.provider-connection {
+  flex: 1;
+  text-align: center;
+  border-right: 2px solid #fff;
+  padding-right: 10px;
 }
 
 .provider-speed {
-  flex: 0 0 20%;
+  flex: 1;
+  text-align: center;
+  border-right: 2px solid #fff;
+  padding-right: 10px;
 }
 
-.provider-speed p {
-  margin: 5px 0;
-  font-size: 14px;
-}
-
-.speed-value {
-  font-size: 18px;
-  font-weight: bold;
+.provider-rating {
+  flex: 1;
+  text-align: center;
 }
 
 .provider-rating .stars {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}
+
+.provider-rating .star {
   color: #ffc107;
   font-size: 18px;
 }
 
-.provider-rating .user-rating {
-  font-size: 12px;
-  color: #555;
-}
-
 .provider-button {
-  flex: 0 0 20%;
+  flex: 1;
   text-align: center;
 }
 
@@ -842,9 +836,8 @@ tr:nth-child(even) {
   border: none;
   border-radius: 20px;
   padding: 10px 20px;
-  font-size: 14px;
-  font-weight: bold;
   cursor: pointer;
+  font-size: 14px;
   transition: background-color 0.3s ease;
 }
 
@@ -852,10 +845,22 @@ tr:nth-child(even) {
   background-color: #e63950;
 }
 
+
 @media (max-width: 768px) {
+  .provider-card {
+    margin: 10px;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
   .provider-card-main {
     flex-direction: column;
     text-align: center;
+    padding: 15px;
+  }
+
+  .provider-logo-container {
+    margin-bottom: 10px; /* Add spacing below the logo */
   }
 
   .provider-details,
@@ -863,12 +868,42 @@ tr:nth-child(even) {
   .provider-rating,
   .provider-button {
     flex: 0 0 100%;
+    margin-bottom: 10px; /* Add spacing between sections */
+  }
+
+  .provider-details p,
+  .provider-speed p,
+  .provider-rating p {
+    margin: 5px 0; /* Reduce spacing between lines for better readability */
+    font-size: 14px; /* Slightly smaller text for mobile */
   }
 
   .view-plan-btn {
     width: 100%;
+    padding: 12px; /* Make the button larger for easier tapping */
+    font-size: 16px; /* Increase font size for accessibility */
+    margin-top: 10px; /* Add spacing above the button */
   }
+
+  .stars {
+    justify-content: center; /* Center-align the stars on mobile */
+  }
+
+  .availability {
+    text-align: center; /* Center-align the availability info */
+    margin-bottom: 10px; /* Add spacing below the availability info */
+  }
+   /* Remove dividing lines for mobile */
+   .provider-details,
+   .provider-speed,
+   .provider-rating,
+   .provider-connection,
+   .provider-logo-container {
+     border: none; /* Removes any borders */
+     border-right: none;
+   }
 }
+
 
 /*Services Section*/
 /* Updated styles for centered text overlay */
@@ -952,7 +987,7 @@ tr:nth-child(even) {
 
 @media (max-width: 768px) {
   .service-card {
-      width: 120px;
+      width: 80%;
       height: 120px;
   }
 
@@ -974,7 +1009,7 @@ tr:nth-child(even) {
   }
 
   .service-card {
-      width: 100px;
+      width: 80%;
       height: 100px;
   }
 

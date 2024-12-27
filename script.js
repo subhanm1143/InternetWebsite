@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(csvText => {
             const rows = csvText.split('\n').slice(1); // Remove the header row
             broadbandData = rows.map(row => {
-                const [Provider, Plan, Price, Speed, ZipCode, City, State, ImagePath] = row.split(',');
+                const [Provider, Plan, Price, Speed, ZipCode, City, State, ImagePath, Rating, Connection] = row.split(',');
 
                 return {
                     Provider: Provider.trim(),
@@ -35,7 +35,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     ZipCode: ZipCode,
                     City: City,
                     State: State,
-                    ImagePath: ImagePath
+                    ImagePath: ImagePath,
+                    Rating: Rating,
+                    Connection: Connection
                 };
             });
             console.log("Broadband data loaded:", broadbandData);
@@ -116,35 +118,31 @@ function displayBroadbandInfoForZip(zipCode, broadbandData) {
 
 function generateCards(title, data) {
     const cards = data.map(entry => `
-        <div class="provider-card" data-aos="zoom-in-up">
+        <div class="provider-card" data-aos="fade-up">
             <div class="provider-card-header">
-                <div class="provider-name">${entry.Provider || 'Unknown Provider'}</div>
-                <div class="availability">
+                <h3>${entry.Provider || 'Unknown Provider'}</h3>
+                <p class="availability">
                     <img src="imgs/check.svg" alt="Check" class="check-icon">
                     ${entry.Availability || 'Available'}
-                </div>
+                </p>
             </div>
             <div class="provider-card-main">
                 <div class="provider-logo-container">
                     <img src="${entry.ImagePath || ''}" alt="${entry.Provider} Logo" class="provider-logo">
                 </div>
-                <div class="provider-details">
+                <div class="provider-connection">
                     <p><strong>Connection:</strong> ${entry.Connection || 'N/A'}</p>
                     <p><strong>Price:</strong> ${entry.Price || 'N/A'}</p>
                 </div>
                 <div class="provider-speed">
-                    <p><strong>Download speeds:</strong></p>
+                    <p><strong>Download speeds up to:</strong></p>
                     <p class="speed-value">${entry.Speed || 'N/A'}</p>
                 </div>
                 <div class="provider-rating">
                     <div class="stars">
-                        <span class="star">&#9733;</span>
-                        <span class="star">&#9733;</span>
-                        <span class="star">&#9733;</span>
-                        <span class="star">&#9733;</span>
-                        <span class="star">&#9734;</span>
+                        ${generateStars(entry.Rating || 0)}
                     </div>
-                    <p class="user-rating">User Rating (${entry.Rating || '0'})<sup>◊</sup></p>
+                    <p class="user-rating">User Rating (${entry.Rating || '0'})</p>
                 </div>
                 <div class="provider-button">
                     <button class="view-plan-btn">View Plans</button>
@@ -158,6 +156,14 @@ function generateCards(title, data) {
         <div class="cards-container">
             ${cards}
         </div>
+    `;
+}
+
+function generateStars(rating) {
+    let fullStars = Math.floor(rating);
+
+    return `
+        ${'<span class="star full">&#9733;</span>'.repeat(fullStars)}
     `;
 }
 
