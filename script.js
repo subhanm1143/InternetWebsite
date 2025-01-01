@@ -9,14 +9,6 @@ for(let i=0; i<marqueeElementsDisplayed; i++) {
   marqueeContent.appendChild(marqueeContent.children[i].cloneNode(true));
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    const map = document.querySelector('#us-map');
-    const selectedState = document.querySelector('#selected-state');
-    const broadbandInfo = document.querySelector('#broadband-info');
-    const searchForm = document.querySelector('#search-form');
-    const searchInput = document.querySelector('#search-input');
-
-    let broadbandData = [];
 
 // Load CSV file
 fetch('broadband_data.csv')
@@ -287,6 +279,4 @@ document.addEventListener('DOMContentLoaded', () => {
             searchResults.innerHTML = "";
         }
     });
-});
-
 });
