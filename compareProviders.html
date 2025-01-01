@@ -98,126 +98,145 @@
 
       <script>
         AOS.init();
-        document.addEventListener('DOMContentLoaded', () => {
-            console.log("DOM fully loaded and parsed");
-    
-            const searchButton = document.getElementById('search-button');
-            const zipCodeInput = document.getElementById('zip-code-input');
-            const broadbandInfo = document.getElementById('broadband-info');
-    
-            let broadbandData = [];
-    
-            // Fetch and parse broadband data
-            fetch('broadband_data.csv')
-                .then(response => {
-                    console.log("CSV fetch status:", response.status);
-                    if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
-                    return response.text();
-                })
-                .then(csvText => {
-                    console.log("CSV content loaded:", csvText.slice(0, 100)); // Preview first 100 characters
-                    const rows = csvText.split('\n').filter(row => row.trim() !== '').slice(1); // Skip empty lines and header
-                    broadbandData = rows.map(row => {
-                        const fields = row.split(',');
-    
-                        if (fields.length < 7) {
-                            console.warn("Skipping malformed row:", row);
-                            return null;
-                        }
-    
-                        const [Provider, Plan, Price, Speed, ZipCode, City, State, ImagePath] = fields.map(field => field.trim());
-    
-                        return { Provider, Plan, Price, Speed, ZipCode, City, State, ImagePath };
-                    }).filter(entry => entry !== null);
-    
-                    console.log("Parsed broadband data:", broadbandData);
-    
-                    // Check for query parameter and display results
-                    const zipCode = getQueryParam("zip");
-                    if (zipCode) {
-                        zipCodeInput.value = zipCode; // Set the input field with the ZIP code
-                        displayBroadbandInfo(zipCode, broadbandData);
-                    }
-                })
-                .catch(error => console.error('Error loading CSV:', error));
-    
-            // Function to extract query parameter
-            function getQueryParam(param) {
-                const urlParams = new URLSearchParams(window.location.search);
-                return urlParams.get(param);
+document.addEventListener('DOMContentLoaded', () => {
+    console.log("DOM fully loaded and parsed");
+
+    const searchButton = document.getElementById('search-button');
+    const zipCodeInput = document.getElementById('zip-code-input');
+    const broadbandInfo = document.getElementById('broadband-info');
+
+    let zipCodeData = [];
+    let broadbandData = [];
+
+    // Fetch and parse zip code data
+    fetch('zipcodes.csv')
+        .then(response => response.text())
+        .then(csvText => {
+            zipCodeData = csvText
+                .split('\n')
+                .slice(1) // Skip the header
+                .filter(row => row.trim() !== '')
+                .map(row => {
+                    const [ZipCode, Providers] = row.split(',').map(field => field.trim());
+                    return { ZipCode, Providers: Providers.split(';').map(p => p.trim()) };
+                });
+            console.log("Parsed zip code data:", zipCodeData);
+
+            // Check for `zip` parameter in URL and auto-search
+            const urlParams = new URLSearchParams(window.location.search);
+            const zipFromUrl = urlParams.get('zip');
+            if (zipFromUrl) {
+                zipCodeInput.value = zipFromUrl; // Populate input field with the ZIP code
+                searchByZip(zipFromUrl);
             }
-    
-// Function to generate cards instead of a table
-function displayBroadbandInfo(zipCode, data) {
-    console.log("Searching data for ZIP:", zipCode);
+        })
+        .catch(error => console.error('Error loading zip code data:', error));
 
-    const zipData = data.filter(entry => entry.ZipCode === zipCode);
-    console.log("Filtered data for ZIP:", zipData);
+    // Fetch and parse broadband data
+    fetch('broadband_data.csv')
+        .then(response => response.text())
+        .then(csvText => {
+            broadbandData = csvText
+                .split('\n')
+                .slice(1) // Skip the header
+                .filter(row => row.trim() !== '')
+                .map(row => {
+                    const [Provider, Plan, Price, Speed, ZipCode, City, State, ImagePath, Rating, Connection] = row.split(',').map(field => field.trim());
+                    return { Provider, Plan, Price, Speed, ZipCode, City, State, ImagePath, Rating, Connection };
+                });
+            console.log("Parsed broadband data:", broadbandData);
+        })
+        .catch(error => console.error('Error loading broadband data:', error));
 
-    const broadbandInfo = document.getElementById("broadband-info");
+    // Function to search by ZIP code
+    const searchByZip = (zipCode) => {
+        console.log("Searching for ZIP:", zipCode);
 
-    if (zipData.length === 0) {
-        broadbandInfo.innerHTML = `<p>No broadband data available for ZIP code: ${zipCode}</p>`;
-        return;
-    }
+        // Check for providers in the ZIP code
+        const zipEntry = zipCodeData.find(entry => entry.ZipCode === zipCode);
+        if (!zipEntry) {
+            broadbandInfo.innerHTML = `<p>No providers available for ZIP code: ${zipCode}</p>`;
+            return;
+        }
 
-    // Generate cards
-    broadbandInfo.innerHTML = zipData
-        .map(
-            entry => `
-        <div class="provider-card" data-aos="zoom-in-up">
-            <div class="provider-card-header">
-                <div class="provider-name">${entry.Provider}</div>
-                <div class="availability">
-                    <img src="imgs/check.svg" alt="Check" class="check-icon">
-                    Available in ${zipCode}
-                </div>
-            </div>
-            <div class="provider-card-main">
-                <div class="provider-logo-container">
-                    <img src="${entry.ImagePath || ''}" alt="${entry.Provider} Logo" class="provider-logo">
-                </div>
-                <div class="provider-details">
-                    <p><strong>Plan:</strong> ${entry.Plan || 'N/A'}</p>
-                    <p><strong>Price:</strong> ${entry.Price || 'N/A'}</p>
-                </div>
-                <div class="provider-speed">
-                    <p><strong>Download speeds up to:</strong></p>
-                    <p class="speed-value">${entry.Speed || 'N/A'} Mbps</p>
-                </div>
-                <div class="provider-rating">
-                    <div class="stars">
-                        <span class="star">&#9733;</span>
-                        <span class="star">&#9733;</span>
-                        <span class="star">&#9733;</span>
-                        <span class="star">&#9733;</span>
-                        <span class="star">&#9734;</span>
+        const providersInZip = zipEntry.Providers;
+        console.log(`Providers available in ZIP ${zipCode}:`, providersInZip);
+
+        // Filter broadband data based on the providers
+        const matchingBroadbandData = broadbandData.filter(entry =>
+            providersInZip.includes(entry.Provider)
+        );
+
+        if (matchingBroadbandData.length === 0) {
+            broadbandInfo.innerHTML = `<p>No broadband data available for ZIP code: ${zipCode}</p>`;
+            return;
+        }
+
+        // Sort the data by price (ascending)
+        const sortedBroadbandData = matchingBroadbandData.sort((a, b) => {
+            const priceA = parseFloat(a.Price.replace(/[^0-9.]/g, '')) || Infinity;
+            const priceB = parseFloat(b.Price.replace(/[^0-9.]/g, '')) || Infinity;
+            return priceA - priceB;
+        });
+
+        // Generate and display cards for sorted data
+        broadbandInfo.innerHTML = sortedBroadbandData
+            .map(entry => `
+                <div class="provider-card" data-aos="fade-up">
+                    <div class="provider-card-header">
+                        <h3>${entry.Provider || 'Unknown Provider'}</h3>
+                        <p class="availability">
+                            <img src="imgs/check.svg" alt="Check" class="check-icon">
+                            Available in ${zipCode}
+                        </p>
                     </div>
-                    <p class="user-rating">User Rating (4.0)</p>
+                    <div class="provider-card-main">
+                        <div class="provider-logo-container">
+                            <img src="${entry.ImagePath || ''}" alt="${entry.Provider} Logo" class="provider-logo">
+                        </div>
+                        <div class="provider-connection">
+                            <p><strong>Connection:</strong> ${entry.Connection || 'N/A'}</p>
+                            <p><strong>Price:</strong> ${entry.Price || 'N/A'}</p>
+                        </div>
+                        <div class="provider-speed">
+                            <p><strong>Download speeds up to:</strong></p>
+                            <p class="speed-value">${entry.Speed || 'N/A'} Mbps</p>
+                        </div>
+                        <div class="provider-rating">
+                            <div class="stars">
+                                ${generateStars(entry.Rating || 0)}
+                            </div>
+                            <p class="user-rating">User Rating (${entry.Rating || '0'})</p>
+                        </div>
+                        <div class="provider-button">
+                            <button class="view-plan-btn">View Plans</button>
+                        </div>
+                    </div>
                 </div>
-                <div class="provider-button">
-                    <button class="view-plan-btn">View Plans</button>
-                </div>
-            </div>
-        </div>
-        `
-        )
-        .join("");
+            `)
+            .join('');
+    };
+
+    // Event listener for search button
+    searchButton.addEventListener('click', () => {
+        const zipCode = zipCodeInput.value.trim();
+        if (zipCode) {
+            window.history.pushState(null, '', `?zip=${zipCode}`); // Update URL
+            searchByZip(zipCode);
+        }
+    });
+});
+
+// Helper function to generate star ratings
+function generateStars(rating) {
+    const fullStars = Math.floor(rating);
+    const emptyStars = 5 - fullStars;
+    return `
+        ${'<span class="star full">&#9733;</span>'.repeat(fullStars)}
+        ${'<span class="star empty">&#9734;</span>'.repeat(emptyStars)}
+    `;
 }
 
-            // Event listener for search button
-            searchButton.addEventListener('click', () => {
-                const zipCode = zipCodeInput.value.trim();
-                console.log("Search button clicked for ZIP:", zipCode);
-    
-                if (zipCode) {
-                    // Update URL with the new ZIP code
-                    window.history.pushState(null, '', `?zip=${zipCode}`);
-                    // Refresh the broadband data with the new ZIP code
-                    displayBroadbandInfo(zipCode, broadbandData);
-                }
-            });
-        });
     </script>
     
     
