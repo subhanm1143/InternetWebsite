@@ -1,4 +1,10 @@
-/* Main Section */
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background: url('/imgs/Readmorebackground.png') no-repeat center center fixed;
+    color: #333;
+    overflow-x: hidden;
+}/* Main Section */
 #speed-test {
     text-align: center;
     padding: 50px 20px;

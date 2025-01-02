@@ -1,66 +1,81 @@
-/* Readmore Specific Styles */
+/* General Reset */
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background: url('/imgs/Readmorebackground.png') no-repeat center center fixed;
+    color: #333;
+    overflow-x: hidden;
+}
 
 /* Header Section */
 header {
     text-align: center;
-    background-color: #f4f8fc;
+    background: #ffffff;
     padding: 20px;
     border-bottom: 2px solid #e0e0e0;
 }
 
 header h1 {
     font-size: 2.5rem;
-    color: #003366;
+    color: #333;
     margin-bottom: 10px;
+    font-family: 'Roboto', sans-serif;
 }
 
 header p {
     font-size: 1rem;
     color: #555;
+    margin: 5px 0;
 }
 
-/* Main Section Styling */
+/* Main Section */
 main {
     padding: 20px;
-    max-width: 900px;
-    margin: 0 auto;
-    background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: 30px auto;
+    border-radius: 10px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 main section {
     margin-bottom: 30px;
     padding: 20px;
     background-color: #f9f9f9;
-    border-radius: 5px;
-    border-left: 5px solid #003366;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    border-left: 4px solid #333;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+main section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 main section h2 {
     font-size: 1.8rem;
-    color: #003366;
-    margin-bottom: 15px;
+    color: #333;
+    margin-bottom: 10px;
+    font-weight: bold;
 }
 
 main section h3 {
     font-size: 1.4rem;
-    color: #00509e;
+    color: #555;
     margin-bottom: 10px;
+    font-weight: 600;
 }
 
 main section p {
     font-size: 1rem;
-    color: #555;
-    line-height: 1.8;
-    margin-bottom: 15px;
+    color: #666;
+    line-height: 1.6;
 }
 
-/* Takeaways Section Highlight */
+/* Takeaways Section */
 #takeaways {
-    background-color: #003366;
+    background-color: #333;
     color: #ffffff;
+    border-left: 4px solid #555;
 }
 
 #takeaways h2 {
@@ -72,15 +87,13 @@ main section p {
     color: #ffffff;
 }
 
-/* Footer Styling */
+
+/* Footer */
 footer {
     text-align: center;
-    background-color: #f4f8fc;
+    background: #ffffff;
     padding: 10px;
     border-top: 2px solid #e0e0e0;
-}
-
-footer p {
     font-size: 0.9rem;
     color: #666;
 }
@@ -88,7 +101,7 @@ footer p {
 /* Responsive Design */
 @media screen and (max-width: 768px) {
     main {
-        padding: 10px;
+        padding: 15px;
     }
 
     main section {
@@ -98,4 +111,22 @@ footer p {
     header h1 {
         font-size: 2rem;
     }
+
+    header p {
+        font-size: 0.9rem;
+    }
+}
+
+/* AOS Animations */
+[data-aos] {
+    opacity: 0;
+    transform: translateY(20px);
+    transition-property: opacity, transform;
+    transition-duration: 0.6s;
+    transition-timing-function: ease-out;
+}
+
+[data-aos][data-aos-ready] {
+    opacity: 1;
+    transform: translateY(0);
 }
