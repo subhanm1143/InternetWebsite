@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chat Box</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
+  <style>
+    /* General Styles */
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+
+    /* Chat Box Container */
+    #chat-box {
+      position: fixed;
+      height: 100%;
+      width: 100%;
+      background-color: #f9f9f9;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      overflow: hidden;
+      flex-direction: column;
+    }
+
+    /* Chat Header */
+    #chat-header {
+      background-color: #0056d4;
+      color: #fff;
+      padding: 10px;
+      font-size: 18px;
+      text-align: center;
+    }
+
+    /* Chat Window */
+    #chat-window {
+      height:50%;  
+      padding: 10px;
+      max-height: 400px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    /* Chat Message */
+    .chat-message {
+      padding: 10px;
+      border-radius: 5px;
+      max-width: 80%;
+    }
+
+    .user-message {
+      background-color: #0056d4;
+      color: white;
+      align-self: flex-end;
+    }
+
+    .system-message {
+      background-color: #e0e0e0;
+      color: black;
+      align-self: flex-start;
+    }
+
+    /* Chat Options */
+    #chat-options {
+      padding: 10px;
+    }
+
+    .chat-option {
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      text-align: center;
+    }
+
+    .chat-option:hover {
+      background-color: #e0e0e0;
+    }
+  </style>
+</head>
+<body>
+    <!-- Chat Box -->
+    <div id="chat-box">
+      <div id="chat-header">Chat with Us!</div>
+      <div id="chat-window"></div>
+      <div id="chat-options">
+        <!-- Initial Chat Options -->
+        <div class="chat-option" onclick="nextStep('Billing Issue')">Billing Issue</div>
+        <div class="chat-option" onclick="nextStep('Technical Support')">Technical Support</div>
+        <div class="chat-option" onclick="nextStep('Product Inquiry')">Product Inquiry</div>
+        <div class="chat-option" onclick="nextStep('Other')">Other</div>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+      AOS.init();
+
+      function nextStep(option) {
+        const chatWindow = document.getElementById('chat-window');
+        const chatOptions = document.getElementById('chat-options');
+  
+        // Append user message
+        const userMessage = document.createElement('div');
+        userMessage.classList.add('chat-message', 'user-message');
+        userMessage.textContent = option;
+        userMessage.setAttribute('data-aos', 'fade-up'); userMessage.setAttribute('data-aos-duration', '1500');
+        chatWindow.appendChild(userMessage);
+  
+        // Scroll to bottom
+        chatWindow.scrollTop = chatWindow.scrollHeight;
+  
+        // System response logic with custom messages
+        if (option === 'Billing Issue') {
+          setTimeout(() => {
+            appendSystemMessage('What seems to be the issue with your bill?');
+            chatOptions.innerHTML = `
+              <div class="chat-option" onclick="nextStep('Bill Too High')">Bill Too High</div>
+              <div class="chat-option" onclick="nextStep('Bill Not Received')">Bill Not Received</div>
+              <div class="chat-option" onclick="nextStep('Need to Pay Bill')">Need to Pay Bill</div>
+              <div class="chat-option" onclick="goBack()">Back</div>
+            `;
+          }, 500);
+        } else if (option === 'Technical Support') {
+          setTimeout(() => {
+            appendSystemMessage('What technical issue are you facing?');
+            chatOptions.innerHTML = `
+              <div class="chat-option" onclick="nextStep('Internet Not Working')">Internet Not Working</div>
+              <div class="chat-option" onclick="nextStep('Slow Internet')">Slow Internet</div>
+              <div class="chat-option" onclick="nextStep('Other Technical Issue')">Other Technical Issue</div>
+              <div class="chat-option" onclick="goBack()">Back</div>
+            `;
+          }, 500);
+        } else if (option === 'Product Inquiry') {
+          setTimeout(() => {
+            appendSystemMessage('What product would you like to know more about?');
+            chatOptions.innerHTML = `
+              <div class="chat-option" onclick="nextStep('Internet Plans')">Internet Plans</div>
+              <div class="chat-option" onclick="nextStep('Hardware')">Hardware</div>
+              <div class="chat-option" onclick="nextStep('Other Product')">Other Product</div>
+              <div class="chat-option" onclick="goBack()">Back</div>
+            `;
+          }, 500);
+        } else if (['Bill Too High', 'Bill Not Received', 'Need to Pay Bill'].includes(option)) {
+          setTimeout(() => {
+            appendSystemMessage(`Our billing department is here to assist you. Please call us at 1-800-123-4567.`);
+            chatOptions.innerHTML = `<div class="chat-option" onclick="endChat()">End Chat</div>`;
+          }, 500);
+        } else if (['Internet Not Working', 'Slow Internet', 'Other Technical Issue'].includes(option)) {
+          setTimeout(() => {
+            appendSystemMessage(`Our technical support team is available at 1-800-123-4568.`);
+            chatOptions.innerHTML = `<div class="chat-option" onclick="endChat()">End Chat</div>`;
+          }, 500);
+        } else if (['Internet Plans', 'Hardware', 'Other Product'].includes(option)) {
+          setTimeout(() => {
+            appendSystemMessage(`For detailed information, please contact our sales team at 1-800-123-4569.`);
+            chatOptions.innerHTML = `<div class="chat-option" onclick="endChat()">End Chat</div>`;
+          }, 500);
+        } else {
+          setTimeout(() => {
+            appendSystemMessage('Thank you for chatting with us! Feel free to contact us anytime.');
+            chatOptions.innerHTML = `<div class="chat-option" onclick="endChat()">End Chat</div>`;
+          }, 500);
+        }
+      }
+  
+      function appendSystemMessage(message) {
+        const chatWindow = document.getElementById('chat-window');
+        const systemMessage = document.createElement('div');
+        systemMessage.classList.add('chat-message', 'system-message');
+        systemMessage.textContent = message;
+        systemMessage.setAttribute('data-aos', 'fade-up'); systemMessage.setAttribute('data-aos-duration', '1500');
+        chatWindow.appendChild(systemMessage);
+  
+        // Scroll to bottom
+        chatWindow.scrollTop = chatWindow.scrollHeight;
+      }
+  
+      function goBack() {
+        const chatOptions = document.getElementById('chat-options');
+        chatOptions.innerHTML = `
+          <div class="chat-option" onclick="nextStep('Billing Issue')">Billing Issue</div>
+          <div class="chat-option" onclick="nextStep('Technical Support')">Technical Support</div>
+          <div class="chat-option" onclick="nextStep('Product Inquiry')">Product Inquiry</div>
+          <div class="chat-option" onclick="nextStep('Other')">Other</div>
+        `;
+      }
+  
+      function endChat() {
+  const chatWindow = document.getElementById('chat-window');
+  const chatOptions = document.getElementById('chat-options');
+
+  // Append a thank you message to the chat window
+  const thankYouMessage = document.createElement('div');
+  thankYouMessage.classList.add('chat-message', 'system-message');
+  thankYouMessage.setAttribute('data-aos', 'fade-up');
+  thankYouMessage.setAttribute('data-aos-duration', '800');
+  thankYouMessage.textContent = 'Thank you for chatting with us! Have a great day!';
+  chatWindow.appendChild(thankYouMessage);
+
+  // Clear the options section
+  chatOptions.innerHTML = '';
+
+  // Scroll to bottom to make sure the message is visible
+  chatWindow.scrollTop = chatWindow.scrollHeight;
+}
+
+    </script>
+  </body>
+</html>
