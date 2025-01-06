@@ -310,7 +310,7 @@ body {
     max-height: 100%;
     font-size: calc(var(--marquee-height)*3/4); /* 5rem; */
     white-space: nowrap;
-    padding-left: 10px;
+    padding-left: 15px;
   }
   
   .marquee-content li img {
