@@ -1,7 +1,6 @@
 /* General Reset */
 body {
     margin: 0;
-    font-family: 'Arial', sans-serif;
     background: url('/imgs/Readmorebackground.png') no-repeat center center fixed;
     color: #333;
     overflow-x: hidden;
