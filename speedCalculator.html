@@ -44,38 +44,38 @@
                 <div class="question" data-step="1">
                     <h2>How many people in your household use the internet/WiFi daily?</h2>
                     <div class="options">
-                        <button onclick="selectAnswer(1, 20)">1-2</button>
-                        <button onclick="selectAnswer(1, 40)">3-4</button>
-                        <button onclick="selectAnswer(1, 60)">5+</button>
+                        <button onclick="selectAnswer(1, 100)">1-2</button>
+                        <button onclick="selectAnswer(1, 200)">3-4</button>
+                        <button onclick="selectAnswer(1, 400)">5+</button>
                     </div>
                 </div>
                 <!-- Question 2 -->
                 <div class="question hidden" data-step="2">
                     <h2>How many devices are connected to the internet in your home?</h2>
                     <div class="options">
-                        <button onclick="selectAnswer(2, 20)">1-3</button>
-                        <button onclick="selectAnswer(2, 40)">4-6</button>
-                        <button onclick="selectAnswer(2, 60)">7-9</button>
-                        <button onclick="selectAnswer(2, 80)">10+</button>
+                        <button onclick="selectAnswer(2, 100)">1-3</button>
+                        <button onclick="selectAnswer(2, 200)">4-6</button>
+                        <button onclick="selectAnswer(2, 300)">7-9</button>
+                        <button onclick="selectAnswer(2, 400)">10+</button>
                     </div>
                 </div>
                 <!-- Question 3 -->
                 <div class="question hidden" data-step="3">
                     <h2>What video quality do you use for streaming TV and movies?</h2>
                     <div class="options">
-                        <button onclick="selectAnswer(3, 5)">I don't stream</button>
-                        <button onclick="selectAnswer(3, 20)">HD</button>
-                        <button onclick="selectAnswer(3, 40)">4K</button>
+                        <button onclick="selectAnswer(3, 50)">I don't stream</button>
+                        <button onclick="selectAnswer(3, 200)">HD</button>
+                        <button onclick="selectAnswer(3, 400)">4K</button>
                     </div>
                 </div>
                 <!-- Question 4 -->
                 <div class="question hidden" data-step="4">
                     <h2>How intensely does your household participate in online gaming?</h2>
                     <div class="options">
-                        <button onclick="selectAnswer(4, 5)">No online gaming</button>
-                        <button onclick="selectAnswer(4, 30)">Casual and recreational</button>
-                        <button onclick="selectAnswer(4, 50)">Seriously competitive</button>
-                        <button onclick="selectAnswer(4, 80)">Professional level</button>
+                        <button onclick="selectAnswer(4, 50)">No online gaming</button>
+                        <button onclick="selectAnswer(4, 300)">Casual and recreational</button>
+                        <button onclick="selectAnswer(4, 500)">Seriously competitive</button>
+                        <button onclick="selectAnswer(4, 800)">Professional level</button>
                     </div>
                 </div>
                 <!-- Question 5 -->
@@ -83,8 +83,8 @@
                     <h2>Does your household download large files from the cloud or via the internet?</h2>
                     <div class="options">
                         <button onclick="selectAnswer(5, 0)">No</button>
-                        <button onclick="selectAnswer(5, 30)">Yes, occasionally</button>
-                        <button onclick="selectAnswer(5, 60)">Yes, frequently</button>
+                        <button onclick="selectAnswer(5, 300)">Yes, occasionally</button>
+                        <button onclick="selectAnswer(5, 600)">Yes, frequently</button>
                     </div>
                 </div>
                 <!-- Question 6 -->
@@ -92,123 +92,166 @@
                     <h2>How many people in your household work from home?</h2>
                     <div class="options">
                         <button onclick="selectAnswer(6, 0)">None</button>
-                        <button onclick="selectAnswer(6, 40)">1</button>
-                        <button onclick="selectAnswer(6, 60)">2</button>
-                        <button onclick="selectAnswer(6, 100)">3+</button>
+                        <button onclick="selectAnswer(6, 400)">1</button>
+                        <button onclick="selectAnswer(6, 600)">2</button>
+                        <button onclick="selectAnswer(6, 1000)">3+</button>
                     </div>
                 </div>
                 <!-- Final Result -->
-                <div class="result hidden" >
+                <div class="result hidden">
                     <h2>Your Recommended Speed</h2>
                     <div id="recommended-speed" class="speed-display" data-aos="fade-in" data-aos-duration="2000">0 Mbps</div>
+                    <div id="recommended-plans" class="plans-display">
+                        <h3>Recommended Internet Plans</h3>
+                        <ul class="plan-list" id="plan-list"></ul>
+                    </div>
                 </div>
+                
             </div>
         </section>
-    </main>
 
-    <!-- Footer -->
     <footer class="footer">
         <div class="footer-container">
-          <div class="footer-column">
-            <h3>Providers</h3>
-            <ul>
-              <li><a href="compareProviders.html">Compare Providers</a></li>
-              <li><a href="reviewProviders.html">Review Providers</a></li>
-            </ul>
-          </div>
-          <div class="footer-column">
-            <h3>Internet Tools</h3>
-            <ul>
-              <li><a href="speed.html">Internet Speed Test</a></li>
-              <li><a href="speedCalculator.html">How Much Speed Do You Need?</a></li>
-            </ul>
-          </div>
-          <div class="footer-column">
-            <h3>Connect with Us</h3>
-            <ul>
-              <li><a href="about.html">About</a></li>
-              <li><a href="contact.html">Contact Us</a></li>
-            </ul>
-            <div class="social-icons">
-              <a href="#"><i class="fab fa-facebook-f"></i></a>
-              <a href="#"><i class="fab fa-twitter"></i></a>
-              <a href="#"><i class="fab fa-instagram"></i></a>
+            <div class="footer-column">
+                <h3>Providers</h3>
+                <ul>
+                    <li><a href="compareProviders.html">Compare Providers</a></li>
+                    <li><a href="reviewProviders.html">Review Providers</a></li>
+                </ul>
             </div>
-          </div>
+            <div class="footer-column">
+                <h3>Internet Tools</h3>
+                <ul>
+                    <li><a href="speed.html">Internet Speed Test</a></li>
+                    <li><a href="speedCalculator.html">How Much Speed Do You Need?</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Connect with Us</h3>
+                <ul>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
         </div>
-              <!-- Chat Button and Iframe -->
-    <div id="chat-button" onclick="toggleChatBox()" style="
-    position: fixed; 
-    bottom: 20px; 
-    right: 20px; 
-    background-color: #0056d4; 
-    color: #fff; 
-    border-radius: 50%; 
-    width: 60px; 
-    height: 60px; 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-    cursor: pointer; 
-    z-index: 1100;">
-    <i class="fas fa-comments" style="font-size: 24px;"></i>
-    </div>
-
-    <iframe 
-    src="chatbox.html" 
-    id="chat-box-frame" 
-    style="
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        width: 360px;
-        height: 500px;
-        border: none;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        display: none; /* Initially hidden */
-        z-index: 1000;">
-    </iframe>
-
-<script>
-    // Function to toggle the iframe visibility
-    function toggleChatBox() {
-        const chatFrame = document.getElementById('chat-box-frame');
-        
-        if (chatFrame.style.display === 'none') {
-            // Open the chat box
-            chatFrame.style.display = 'block';
-        } else {
-            // Close the chat box
-            chatFrame.style.display = 'none';
-            
-            // Reset the chat box content by reloading the iframe
-            chatFrame.src = chatFrame.src;
-        }
-    }
-</script>
-
-      </footer>
+    </footer>
 
     <script>
         let totalSpeed = 0;
-        let currentStep = 1;
+
+        // Normalize Speed Function
+        function normalizeSpeed(speedStr) {
+            if (speedStr.toLowerCase().includes("gig")) {
+                return parseFloat(speedStr) * 1000;
+            } else if (speedStr.toLowerCase().includes("mbps")) {
+                return parseFloat(speedStr);
+            }
+            return NaN;
+        }
+
+        // Load Broadband Data
+        let broadbandData = [];
+        fetch('broadband_data.csv')
+            .then(response => response.text())
+            .then(csvText => {
+                const rows = csvText.split('\n').slice(1);
+                broadbandData = rows.map(row => {
+                    const [Provider, Plan, Price, Speed, ZipCode, City, State, ImagePath, Rating, Connection] = row.split(',');
+
+                    return {
+                        Provider: Provider?.trim(),
+                        Plan: Plan?.trim(),
+                        Price: Price?.trim(),
+                        Speed: normalizeSpeed(Speed?.trim()),
+                        ZipCode: ZipCode?.trim(),
+                        City: City?.trim(),
+                        State: State?.replace(/"/g, '').split(';').map(s => s.trim()),
+                        ImagePath: ImagePath?.trim(),
+                        Rating: parseFloat(Rating) || 0,
+                        Connection: Connection?.trim(),
+                    };
+                });
+
+                console.log("Broadband data loaded:");
+            })
+            .catch(error => console.error('Error loading CSV:', error));
+
+        // Display Recommended Plans
+        function displayRecommendedPlans(recommendedSpeed) {
+            const broadbandInfo = document.getElementById('plan-list');
+            broadbandInfo.innerHTML = '';
+
+            const filteredPlans = broadbandData.filter(plan =>
+                Math.abs(plan.Speed - recommendedSpeed) <= 500
+            );
+
+            if (filteredPlans.length === 0) {
+                broadbandInfo.innerHTML = '<button class="view-plan-btn">Call us <br>888-696-2230</button>';
+                return;
+            }
+
+            broadbandInfo.innerHTML = filteredPlans
+                .map(entry => `
+                    <div class="provider-card" data-aos="fade-up">
+            <div class="provider-card-header">
+                <h3>${entry.Provider || 'Unknown Provider'}</h3>
+                <p class="availability">
+                    <img src="imgs/check.svg" alt="Check" class="check-icon">
+                    ${entry.Availability || 'Available'}
+                </p>
+            </div>
+            <div class="provider-card-main">
+                <div class="provider-logo-container">
+                    <img src="${entry.ImagePath || ''}" alt="${entry.Provider} Logo" class="provider-logo">
+                </div>
+                <div class="provider-connection">
+                    <p><strong>Connection:</strong> ${entry.Connection || 'N/A'}</p>
+                    <p><strong>Price:</strong> ${entry.Price || 'N/A'}</p>
+                </div>
+                <div class="provider-speed">
+                    <p><strong>Download speeds up to:</strong></p>
+                    <p class="speed-value">${entry.Speed || 'N/A'}</p>
+                </div>
+                <div class="provider-rating">
+                    <div class="stars">
+                        ${generateStars(entry.Rating || 0)}
+                    </div>
+                    <p class="user-rating">User Rating (${entry.Rating || '0'})</p>
+                </div>
+                <div class="provider-button">
+                    <button class="view-plan-btn">Call us <br>888-696-2230</button>
+                </div>
+            </div>
+        </div>`
+                ).join('');
+        }
 
         function selectAnswer(step, value) {
             totalSpeed += value;
-
-            // Hide current question
             document.querySelector(`.question[data-step="${step}"]`).classList.add('hidden');
 
-            // Show the next question or result
             const nextQuestion = document.querySelector(`.question[data-step="${step + 1}"]`);
             if (nextQuestion) {
                 nextQuestion.classList.remove('hidden');
             } else {
                 document.querySelector('.result').classList.remove('hidden');
                 document.getElementById('recommended-speed').textContent = `${totalSpeed} Mbps`;
+                displayRecommendedPlans(totalSpeed);
             }
         }
+        function generateStars(rating) {
+    const fullStars = Math.floor(rating);
+    const emptyStars = 5 - fullStars;
+    return `
+        ${'<span class="star full">&#9733;</span>'.repeat(fullStars)}
+        ${'<span class="star empty">&#9734;</span>'.repeat(emptyStars)}
+    `;
+}
     </script>
     <script>AOS.init();</script>
 </body>
