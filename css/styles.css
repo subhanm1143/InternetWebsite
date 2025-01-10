@@ -6,6 +6,7 @@ body {
   line-height: 1.6;
 }
 /* Header */
+/* Header */
 .main-header {
   display: flex;
   justify-content: space-between;
@@ -25,8 +26,6 @@ body {
 
 .main-header .logo img {
   height: 40px;
-  margin-right: 10px;
-  align-items: center;
 }
 
 .main-header nav {
@@ -55,44 +54,40 @@ body {
   color: #fff;
 }
 
-.search-bar-container {
+.contact-button-container {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  flex-grow: 1;
-  max-width: 300px;
 }
 
-.search-input {
-  width: 100%;
-  padding: 10px;
-  font-size: 1em;
-  border: 1px solid #ccc;
+.contact-button {
+  background-color: #d01a5f;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
   border-radius: 5px;
-  outline: none;
-  transition: border-color 0.3s ease;
-}
-
-.search-input:focus {
-  border-color: #003bb3;
-}
-
-.search-icon {
-  display: flex;
-  align-items: center;
-}
-
-.search-icon img {
-  height: 40px;
-  padding-right: 10%;
+  font-size: 1em;
+  font-weight: bold;
   cursor: pointer;
+  transition: transform 0.3s ease, background-color 0.3s ease; /* Smooth animation */
 }
+
+.contact-button a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.contact-button:hover {
+  transform: scale(1.1); /* Slightly enlarge the button */
+  background-color: #b01550; /* Change to a darker shade of red */
+}
+
 
 /* Mobile-specific styles */
 @media (max-width: 1000px) {
   .main-header {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     padding: 10px 20px;
     background-color: #fff;
@@ -112,10 +107,8 @@ body {
     display: none !important; /* Ensure no other styles override this */
   }
 
-  .search-bar-container {
-    display: none !important; /* Ensure no other styles override this */
-  }
 }
+
 
 
 
