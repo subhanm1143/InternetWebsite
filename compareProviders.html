@@ -146,82 +146,145 @@
       </footer>
 
       <script>
-        let totalSpeed = 0;
-        
-        // Normalize Speed Function
-        function normalizeSpeed(speedStr) {
-            if (speedStr.toLowerCase().includes("gig")) {
-                return parseFloat(speedStr) * 1000;
-            } else if (speedStr.toLowerCase().includes("mbps")) {
-                return parseFloat(speedStr);
+document.addEventListener('DOMContentLoaded', () => {
+    console.log("DOM fully loaded and parsed");
+
+    const searchButton = document.getElementById('search-button');
+    const zipCodeInput = document.getElementById('zip-code-input');
+    const broadbandInfo = document.getElementById('broadband-info');
+
+    let zipCodeData = [];
+    let broadbandData = [];
+
+    // Fetch and parse zip code data
+    fetch('zipcodes.csv')
+        .then(response => response.text())
+        .then(csvText => {
+            zipCodeData = csvText
+                .split('\n')
+                .slice(1) // Skip the header
+                .filter(row => row.trim() !== '')
+                .map(row => {
+                    const [ZipCode, Providers] = row.split(',').map(field => field.trim());
+                    return { ZipCode, Providers: Providers.split(';').map(p => p.trim()) };
+                });
+            console.log("Parsed zip code data:", zipCodeData);
+
+            // Check for `zip` parameter in URL and auto-search
+            const urlParams = new URLSearchParams(window.location.search);
+            const zipFromUrl = urlParams.get('zip');
+            if (zipFromUrl) {
+                zipCodeInput.value = zipFromUrl; // Populate input field with the ZIP code
+                searchByZip(zipFromUrl);
             }
-            return NaN;
+        })
+        .catch(error => console.error('Error loading zip code data:', error));
+
+    // Fetch and parse broadband data
+    fetch('broadband_data.csv')
+        .then(response => response.text())
+        .then(csvText => {
+            broadbandData = csvText
+                .split('\n')
+                .slice(1) // Skip the header
+                .filter(row => row.trim() !== '')
+                .map(row => {
+                    const [Provider, Plan, Price, Speed, ZipCode, City, State, ImagePath, Rating, Connection] = row.split(',').map(field => field.trim());
+                    return { Provider, Plan, Price, Speed, ZipCode, City, State, ImagePath, Rating, Connection };
+                });
+            console.log("Parsed broadband data:", broadbandData);
+        })
+        .catch(error => console.error('Error loading broadband data:', error));
+
+    // Function to search by ZIP code
+    const searchByZip = (zipCode) => {
+        console.log("Searching for ZIP:", zipCode);
+
+        // Check for providers in the ZIP code
+        const zipEntry = zipCodeData.find(entry => entry.ZipCode === zipCode);
+        if (!zipEntry) {
+            broadbandInfo.innerHTML = `<p>No providers available for ZIP code: ${zipCode}</p>`;
+            return;
         }
 
-        // Load Broadband Data
-        async function loadBroadbandData() {
-            const response = await fetch('broadband_data.csv');
-            const data = await response.text();
+        const providersInZip = zipEntry.Providers;
+        console.log(`Providers available in ZIP ${zipCode}:`, providersInZip);
 
-            const rows = data.split('\n').slice(1);
-            return rows.map(row => {
-                const columns = row.split(',');
-                if (columns.length >= 10) {
-                    return {
-                        planName: columns[0].trim(),
-                        speed: normalizeSpeed(columns[1].trim()),
-                        price: columns[2].trim(),
-                        providerLogo: columns[8].trim(),
-                        rating: parseFloat(columns[9].trim()),
-                        connectionType: columns[10].trim()
-                    };
-                }
-                return null;
-            }).filter(plan => plan && !isNaN(plan.speed));
+        // Filter broadband data based on the providers
+        const matchingBroadbandData = broadbandData.filter(entry =>
+            providersInZip.includes(entry.Provider)
+        );
+
+        if (matchingBroadbandData.length === 0) {
+            broadbandInfo.innerHTML = `<p>No broadband data available for ZIP code: ${zipCode}</p>`;
+            return;
         }
 
-        // Display Recommended Plans
-        async function displayRecommendedPlans(recommendedSpeed) {
-            const broadbandInfo = document.getElementById('plan-list');
-            broadbandInfo.innerHTML = '';
+        // Sort the data by price (ascending)
+        const sortedBroadbandData = matchingBroadbandData.sort((a, b) => {
+            const priceA = parseFloat(a.Price.replace(/[^0-9.]/g, '')) || Infinity;
+            const priceB = parseFloat(b.Price.replace(/[^0-9.]/g, '')) || Infinity;
+            return priceA - priceB;
+        });
 
-            const broadbandData = await loadBroadbandData();
-            const filteredPlans = broadbandData.filter(plan =>
-                Math.abs(plan.speed - recommendedSpeed) <= 500
-            );
-
-            if (filteredPlans.length === 0) {
-                broadbandInfo.innerHTML = '<p>No plans found within this range.</p>';
-                return;
-            }
-
-            broadbandInfo.innerHTML = filteredPlans
-                .map(entry => `
-                    <div class="provider-card" data-aos="fade-up">
-                        <div class="provider-card-header">
-                            <h3>${entry.planName}</h3>
-                            <p><img src="${entry.providerLogo}" alt="Provider Logo"></p>
+        // Generate and display cards for sorted data
+        broadbandInfo.innerHTML = sortedBroadbandData
+            .map(entry => `
+                <div class="provider-card" data-aos="fade-up">
+                    <div class="provider-card-header">
+                        <h3>${entry.Provider || 'Unknown Provider'}</h3>
+                        <p class="availability">
+                            <img src="imgs/check.svg" alt="Check" class="check-icon">
+                            Available in ${zipCode}
+                        </p>
+                    </div>
+                    <div class="provider-card-main">
+                        <div class="provider-logo-container">
+                            <img src="${entry.ImagePath || ''}" alt="${entry.Provider} Logo" class="provider-logo">
                         </div>
-                        <div><strong>Speed:</strong> ${entry.speed} Mbps</div>
-                        <div><strong>Price:</strong> ${entry.price}</div>
-                        <div><strong>Rating:</strong> ${entry.rating}</div>
-                    </div>`).join('');
-        }
+                        <div class="provider-connection">
+                            <p><strong>Connection:</strong> ${entry.Connection || 'N/A'}</p>
+                            <p><strong>Price:</strong> ${entry.Price || 'N/A'}</p>
+                        </div>
+                        <div class="provider-speed">
+                            <p><strong>Download speeds up to:</strong></p>
+                            <p class="speed-value">${entry.Speed || 'N/A'}</p>
+                        </div>
+                        <div class="provider-rating">
+                            <div class="stars">
+                                ${generateStars(entry.Rating || 0)}
+                            </div>
+                            <p class="user-rating">User Rating (${entry.Rating || '0'})</p>
+                        </div>
+                        <div class="provider-button">
+                            <button class="view-plan-btn">View Plans</button>
+                        </div>
+                    </div>
+                </div>
+            `)
+            .join('');
+    };
 
-        function selectAnswer(step, value) {
-            totalSpeed += value;
-            document.querySelector(`.question[data-step="${step}"]`).classList.add('hidden');
-
-            const nextQuestion = document.querySelector(`.question[data-step="${step + 1}"]`);
-            if (nextQuestion) {
-                nextQuestion.classList.remove('hidden');
-            } else {
-                document.querySelector('.result').classList.remove('hidden');
-                document.getElementById('recommended-speed').textContent = `${totalSpeed} Mbps`;
-                displayRecommendedPlans(totalSpeed);
-            }
+    // Event listener for search button
+    searchButton.addEventListener('click', () => {
+        const zipCode = zipCodeInput.value.trim();
+        if (zipCode) {
+            window.history.pushState(null, '', `?zip=${zipCode}`); // Update URL
+            searchByZip(zipCode);
         }
-    </script>
-    <script>AOS.init();</script>
+    });
+});
+
+// Helper function to generate star ratings
+function generateStars(rating) {
+    const fullStars = Math.floor(rating);
+    const emptyStars = 5 - fullStars;
+    return `
+        ${'<span class="star full">&#9733;</span>'.repeat(fullStars)}
+        ${'<span class="star empty">&#9734;</span>'.repeat(emptyStars)}
+    `;
+}
+
+    </script>    <script>AOS.init();</script>
 </body>
 </html>
