@@ -59,6 +59,12 @@ body {
   justify-content: flex-end;
   align-items: center;
 }
+.contact-button-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 
 .contact-button {
   background-color: #d01a5f;
@@ -369,7 +375,7 @@ body {
 }
 
 .read-more-btn {
-    background-color: #0055ff;
+    background-color: #d01a5f;
     color: #fff;
     border: none;
     padding: 10px 20px;
@@ -378,10 +384,12 @@ body {
     font-size: 1em;
     font-weight: bold;
     text-transform: uppercase;
+    transition: transform 0.3s ease, background-color 0.3s ease; /* Smooth animation */
 }
 
 .read-more-btn:hover {
-    background-color: #003bb3;
+    background-color: #b01550;
+    transform: scale(1.05);
 }
 
 .info-cards {
