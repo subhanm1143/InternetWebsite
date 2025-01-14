@@ -812,6 +812,10 @@ tr:nth-child(even) {
   flex: 1;
   text-align: center;
 }
+.provider-button a {
+  text-decoration: none;
+  color: #fff;
+}
 
 .view-plan-btn {
   background-color: #ff4081;

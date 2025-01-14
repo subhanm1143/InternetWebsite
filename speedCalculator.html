@@ -193,7 +193,7 @@
             broadbandInfo.innerHTML = '';
 
             const filteredPlans = broadbandData.filter(plan =>
-                Math.abs(plan.Speed - recommendedSpeed) <= 500
+                Math.abs(plan.Speed - recommendedSpeed) <= 1000
             );
 
             if (filteredPlans.length === 0) {
